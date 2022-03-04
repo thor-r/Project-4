@@ -5,6 +5,8 @@ from rest_framework import status
 # Exceptions 
 from rest_framework.exceptions import NotFound, PermissionDenied # hybrid response/exception that sends a 404 response to the user
 from django.db import IntegrityError
+from django.core.exceptions import ImproperlyConfigured
+
 
 # Permissions Classes
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -62,6 +64,7 @@ class CommentListView(APIView):
 
 # Detailed / Single view
 class CommentDetailView(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly, )
 
     def get_comment(self, pk):
         try:
@@ -77,13 +80,19 @@ class CommentDetailView(APIView):
 
     def put(self, request, pk):
         comment_to_edit = self.get_comment(pk=pk)
-        serialized_comment = PopulatedCommentSerializer(comment_to_edit, data=request.data)
-
+        print('TRYING TO EDIT ------>', comment_to_edit)
+        serialized_comment = PopulatedCommentSerializer(comment_to_edit, data=request.data, partial=True)
+        print('COMMENT ------->', serialized_comment)
         try: 
-            if comment_to_edit.owner == request.user and serialized_comment.is_valid():
-                serialized_comment.save()
+            serialized_comment.is_valid()
+            print('SERIALZED COMMENT ----->', serialized_comment)
+            serialized_comment.save()
             return Response(serialized_comment.data, status=status.HTTP_202_ACCEPTED)
-        except: 
+        except ImproperlyConfigured as e:
+            print('ERROR --->', e)
+            raise PermissionDenied(detail="Unathorised to edit comment")
+        except AssertionError as e:
+            print('ERROR ---->', e)
             raise PermissionDenied(detail="Unathorised to edit comment")
 
 
