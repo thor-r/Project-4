@@ -5,6 +5,8 @@ from rest_framework import status
 # Exceptions 
 from rest_framework.exceptions import NotFound, PermissionDenied # hybrid response/exception that sends a 404 response to the user
 from django.db import IntegrityError
+from django.core.exceptions import ImproperlyConfigured
+
 
 # Permissions Classes
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -43,25 +45,29 @@ class CommentListView(APIView):
 # Add a single comment
     def post(self, request):
         request.data["owner"] = request.user.id
-        serialized_comment = PopulatedCommentSerializer(data=request.data)
+        print(request.data)
+        serialized_comment = CommentSerializer(data=request.data)
         try:
             serialized_comment.is_valid()
             serialized_comment.save()
             print(serialized_comment.data)
             return Response(serialized_comment.data, status=status.HTTP_201_CREATED)
-        except AssertionError as error:
-            print(str(error))
+        except AssertionError as e:
+            print(str(e))
             return Response({
-                "detail": str(error)
+                "detail": str(e) # e is a type: AssertionError, we need to convert this into a string, as AssertionError can't be converted into JSON
             }, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         except:
             return Response({
-                "detail": "Unprocessable Enity"
+                "detail": "Unprocessable Entity"
             }, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
+
+    
 # Detailed / Single view
 class CommentDetailView(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly, )
 
     def get_comment(self, pk):
         try:
@@ -77,13 +83,18 @@ class CommentDetailView(APIView):
 
     def put(self, request, pk):
         comment_to_edit = self.get_comment(pk=pk)
-        serialized_comment = PopulatedCommentSerializer(comment_to_edit, data=request.data)
-
+        print('TRYING TO EDIT ------>', comment_to_edit)
+        serialized_comment = PopulatedCommentSerializer(comment_to_edit, data=request.data, partial=True)
+        print('COMMENT ------->', serialized_comment)
         try: 
-            if comment_to_edit.owner == request.user and serialized_comment.is_valid():
-                serialized_comment.save()
+            serialized_comment.is_valid()
+            serialized_comment.save()
             return Response(serialized_comment.data, status=status.HTTP_202_ACCEPTED)
-        except: 
+        except ImproperlyConfigured as e:
+            print('ERROR --->', e)
+            raise PermissionDenied(detail="Unathorised to edit comment")
+        except AssertionError as e:
+            print('ERROR ---->', e)
             raise PermissionDenied(detail="Unathorised to edit comment")
 
 
