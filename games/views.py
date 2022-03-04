@@ -8,6 +8,7 @@ from django.db import IntegrityError
 
 # Serializers
 from .serializers.common import GameSerializer # generic review serializer
+from .serializers.populated import PopulatedGameSerializer
 
 # Models
 from .models import Game # import Review model
@@ -16,7 +17,7 @@ from .models import Game # import Review model
 class GameListView(APIView):
     def get(self, request):
         games = Game.objects.all()
-        serialized_games = GameSerializer(games, many=True)
+        serialized_games = PopulatedGameSerializer(games, many=True)
         return Response(serialized_games.data, status=status.HTTP_200_OK)
 
 class GameDetailView(APIView):
@@ -28,6 +29,6 @@ class GameDetailView(APIView):
     
     def get(self, _request, pk):
         game = self.get_game(pk)
-        serialzed_game = GameSerializer(game)
+        serialzed_game = PopulatedGameSerializer(game)
         return Response(serialzed_game.data, status=status.HTTP_200_OK)
         
