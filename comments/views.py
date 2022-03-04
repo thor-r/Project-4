@@ -6,10 +6,6 @@ from rest_framework import status
 from rest_framework.exceptions import NotFound, PermissionDenied # hybrid response/exception that sends a 404 response to the user
 from django.db import IntegrityError
 from django.core.exceptions import ImproperlyConfigured
-<<<<<<< HEAD
-=======
-
->>>>>>> development
 
 # Permissions Classes
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -71,10 +67,6 @@ class CommentListView(APIView):
 # Detailed / Single view
 class CommentDetailView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
-<<<<<<< HEAD
-=======
-
->>>>>>> development
     def get_comment(self, pk):
         try:
             return Comment.objects.get(pk=pk)
@@ -91,10 +83,6 @@ class CommentDetailView(APIView):
         print('COMMENT ------->', serialized_comment)
         try: 
             serialized_comment.is_valid()
-<<<<<<< HEAD
-            print('SERIALZED COMMENT ----->', serialized_comment)
-=======
->>>>>>> development
             serialized_comment.save()
             return Response(serialized_comment.data, status=status.HTTP_202_ACCEPTED)
         except ImproperlyConfigured as e:
