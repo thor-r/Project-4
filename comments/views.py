@@ -45,23 +45,26 @@ class CommentListView(APIView):
 # Add a single comment
     def post(self, request):
         request.data["owner"] = request.user.id
-        serialized_comment = PopulatedCommentSerializer(data=request.data)
+        print(request.data)
+        serialized_comment = CommentSerializer(data=request.data)
         try:
             serialized_comment.is_valid()
             serialized_comment.save()
             print(serialized_comment.data)
             return Response(serialized_comment.data, status=status.HTTP_201_CREATED)
-        except AssertionError as error:
-            print(str(error))
+        except AssertionError as e:
+            print(str(e))
             return Response({
-                "detail": str(error)
+                "detail": str(e) # e is a type: AssertionError, we need to convert this into a string, as AssertionError can't be converted into JSON
             }, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         except:
             return Response({
-                "detail": "Unprocessable Enity"
+                "detail": "Unprocessable Entity"
             }, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
+
+    
 # Detailed / Single view
 class CommentDetailView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
@@ -85,7 +88,6 @@ class CommentDetailView(APIView):
         print('COMMENT ------->', serialized_comment)
         try: 
             serialized_comment.is_valid()
-            print('SERIALZED COMMENT ----->', serialized_comment)
             serialized_comment.save()
             return Response(serialized_comment.data, status=status.HTTP_202_ACCEPTED)
         except ImproperlyConfigured as e:

@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'jwt_auth',
     'medias',
-    'comments'
+    'comments',
+    'games'
 ]
 
 MIDDLEWARE = [

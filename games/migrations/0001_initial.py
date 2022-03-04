@@ -12,11 +12,11 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Comment',
+            name='Game',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('text', models.TextField(max_length=300)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('name', models.CharField(max_length=50)),
+                ('image', models.CharField(max_length=500)),
             ],
         ),
     ]
