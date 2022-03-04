@@ -1,4 +1,3 @@
-from pickle import TRUE
 from django.db import models
 
 # Create your models here.
@@ -12,6 +11,11 @@ class Media(models.Model):
     screenshot = models.BooleanField(default=False, blank=True)
     owner = models.ForeignKey(
         "jwt_auth.User",
+        related_name="medias",
+        on_delete=models.CASCADE
+    )
+    games = models.ForeignKey(
+        "games.Game",
         related_name="medias",
         on_delete=models.CASCADE
     )

@@ -1,3 +1,4 @@
+from functools import partial
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status # status gives us a list of possible response codes
