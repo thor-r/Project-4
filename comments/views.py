@@ -5,6 +5,7 @@ from rest_framework import status
 # Exceptions 
 from rest_framework.exceptions import NotFound, PermissionDenied # hybrid response/exception that sends a 404 response to the user
 from django.db import IntegrityError
+from django.core.exceptions import ImproperlyConfigured
 
 # Permissions Classes
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -62,44 +63,43 @@ class CommentListView(APIView):
 
 # Detailed / Single view
 class CommentDetailView(APIView):
-
+    permission_classes = (IsAuthenticatedOrReadOnly, )
     def get_comment(self, pk):
         try:
             return Comment.objects.get(pk=pk)
         except Comment.DoesNotExist:
             raise NotFound(detail="Comment not found")
-
     def get(self, _request, pk):
         comment = self.get_comment(pk)
         serialized_comment = PopulatedCommentSerializer(comment)
         return Response(serialized_comment.data, status=status.HTTP_200_OK)
-
-
     def put(self, request, pk):
         comment_to_edit = self.get_comment(pk=pk)
-        serialized_comment = PopulatedCommentSerializer(comment_to_edit, data=request.data)
-
+        print('TRYING TO EDIT ------>', comment_to_edit)
+        serialized_comment = PopulatedCommentSerializer(comment_to_edit, data=request.data, partial=True)
+        print('COMMENT ------->', serialized_comment)
         try: 
-            if comment_to_edit.owner == request.user and serialized_comment.is_valid():
-                serialized_comment.save()
+            serialized_comment.is_valid()
+            print('SERIALZED COMMENT ----->', serialized_comment)
+            serialized_comment.save()
             return Response(serialized_comment.data, status=status.HTTP_202_ACCEPTED)
-        except: 
+        except ImproperlyConfigured as e:
+            print('ERROR --->', e)
             raise PermissionDenied(detail="Unathorised to edit comment")
-
-
+        except AssertionError as e:
+            print('ERROR ---->', e)
+            raise PermissionDenied(detail="Unathorised to edit comment")
     def delete(self, request, pk):
         print('USER --->', request.user.id)
         try:
             # Get the comment
             comment_to_delete = Comment.objects.get(pk=pk)
-
             # make sure the user matches the owner on the comment instance
             if comment_to_delete.owner != request.user:
                 # if owner doesn't match, throw an error
                 raise PermissionDenied(detail="Unauthorised")
             # if owner matches, delete comment
             comment_to_delete.delete()
-
             # send a response the user
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Comment.DoesNotExist:
@@ -108,4 +108,3 @@ class CommentDetailView(APIView):
             return Response({
                 "detail": "Failed to delete Comment"
             }, status=status.HTTP_401_UNAUTHORIZED)
-            
