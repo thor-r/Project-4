@@ -40,6 +40,26 @@ class CommentListView(APIView):
                 "detail": "Unprocessable Entity"
             }, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
+# Add a single comment
+    def post(self, request):
+        request.data["owner"] = request.user.id
+        serialized_comment = PopulatedCommentSerializer(data=request.data)
+        try:
+            serialized_comment.is_valid()
+            serialized_comment.save()
+            print(serialized_comment.data)
+            return Response(serialized_comment.data, status=status.HTTP_201_CREATED)
+        except AssertionError as error:
+            print(str(error))
+            return Response({
+                "detail": str(error)
+            }, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        except:
+            return Response({
+                "detail": "Unprocessable Enity"
+            }, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+
 # Detailed / Single view
 class CommentDetailView(APIView):
 
@@ -56,13 +76,13 @@ class CommentDetailView(APIView):
 
 
     def put(self, request, pk):
-        comment_to_edit = Comment.objects.get(pk=pk)
+        comment_to_edit = self.get_comment(pk=pk)
         serialized_comment = PopulatedCommentSerializer(comment_to_edit, data=request.data)
 
         try: 
             if comment_to_edit.owner == request.user and serialized_comment.is_valid():
                 serialized_comment.save()
-                return Response(serialized_comment.data, status=status.HTTP_202_ACCEPTED)
+            return Response(serialized_comment.data, status=status.HTTP_202_ACCEPTED)
         except: 
             raise PermissionDenied(detail="Unathorised to edit comment")
 
