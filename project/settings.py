@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'jwt_auth',
     'medias',
     'comments',
-    'games'
+    'games',
+    'genres'
 ]
 
 MIDDLEWARE = [
