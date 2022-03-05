@@ -17,10 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('auth/', include('jwt_auth.urls')),
-    path('media/', include('medias.urls')),
-    path('comments/', include('comments.urls')),
-    path('games/', include('games.urls')),
-    path('genres/', include('genres.urls'))
+    path('api/admin/', admin.site.urls),
+    path('api/auth/', include('jwt_auth.urls')),
+    path('api/media/', include('medias.urls')),
+    path('api/comments/', include('comments.urls')),
+    path('api/games/', include('games.urls')),
+    path('api/genres/', include('genres.urls'))
 ]
