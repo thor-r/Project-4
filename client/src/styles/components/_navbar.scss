@@ -8,11 +8,18 @@
 
 .container {
     a {
-        span {
+        .logo-span {
             svg {
                 width: 45px;
                 height: 45px;
                 color: steelblue;
+            }
+        }
+        .logs-span {
+            svg {
+            width: 25px;
+            height: 25px;
+            color: steelblue;
             }
         }
     }

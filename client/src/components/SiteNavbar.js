@@ -9,13 +9,14 @@ import { MdLogin } from 'react-icons/md'
 import { GiArchiveRegister } from 'react-icons/gi'
 // import NavDropdown from 'react-bootstrap/NavDropdown'
 import { IoGameController } from 'react-icons/io5'
+import { MdOutlineSlowMotionVideo } from 'react-icons/md'
 
 const SiteNavbar = () => {
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
             <Container>
-                <Navbar.Brand href="/"><span><IoGameController /></span> Meta Quest</Navbar.Brand>
+                <Navbar.Brand href="/"><span className="logo-span"><IoGameController /></span> Console L<span className="logs-span" ><MdOutlineSlowMotionVideo /></span>gs</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ms-auto">

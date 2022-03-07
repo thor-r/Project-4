@@ -5,7 +5,6 @@
 
 
 // font-family: 'Bebas Neue', cursive;
-
 // font-family: 'Lobster', cursive;
 // font-family: 'Noto Sans', sans-serif;
 // font-family: 'Nunito Sans', sans-serif;
@@ -19,14 +18,20 @@
         h4 {
             font-size: 25px;
             font-family: 'Segoe UI', sans-serif;
-            span {
-                
-                    svg {
-                        color: steelblue;
-                        width: 45px;
-                        height: 45px;
-                    }
-                
+            .logo-span {
+                svg {
+                    width: 45px;
+                    height: 45px;
+                    color: steelblue;
+                    margin-right: 5px;
+                }
+            }
+            .logs-span {
+                svg {
+                width: 25px;
+                height: 25px;
+                color: steelblue;
+                }
             }
         }
 

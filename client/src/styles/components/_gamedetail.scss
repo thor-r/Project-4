@@ -1,0 +1,26 @@
+.media_image_container {
+  video {
+    border-radius: 10px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    background-size: 100%;
+    z-index: 1;
+  }
+  a {
+    text-decoration: none;
+    
+  }
+  a:hover {
+    color: #F02A00;
+  }
+}
+
+.media-title {
+  padding-top: 50px;
+  padding-left: 5px;
+  color: white;
+  font-weight: 500;
+  position: absolute;
+  z-index: 2;
+}
+

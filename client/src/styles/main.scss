@@ -3,10 +3,13 @@
 @import './components//footer';
 @import './components/register';
 @import './components/login';
-@import './components/gamelist.scss';
+@import './components/gamelist';
+@import './components/gamedetail';
+
 
 * {
     box-sizing: border-box;
+    overflow-x: hidden;
   }
 
   .site-wrapper {

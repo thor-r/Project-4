@@ -9,6 +9,9 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Carousel from 'react-bootstrap/Carousel'
+// import FormControl from 'react-bootstrap/FormControl'
+// import { BsSearch } from 'react-icons/bs'
 
 
 const Home = () => {
@@ -40,26 +43,64 @@ const Home = () => {
 
     return (
         <>
-      <Container className='gamelist_container'>
-        <Row id="row1">
+      <Container fluid id="home-container">
+              <Row>
+          <div className="home-content-1">
         <h1>Quest is ready</h1>
-        <p>SQUAD UP WITH FRIENDS IN DIFFERENT TIME ZONES. MEET UP WITH REAL PEOPLE AT VIRTUAL EVENTS. CREATE, PLAY AND EXPLORE, TOGETHER FROM WHEREVER, ON QUEST 2.</p>
-        <Col>
-          <Button>Buy now</Button>
-          <Button>Learn more</Button>
-        </Col>
+        <h4>
+        SQUAD UP WITH FRIENDS IN DIFFERENT TIME ZONES. MEET UP WITH REAL PEOPLE AT VIRTUAL EVENTS. CREATE, PLAY AND EXPLORE, TOGETHER FROM WHEREVER, ON QUEST 2.
+        </h4>
+          </div>
+          <div className="home-buttons-1">
+          <Link to={`/games`}><Button><strong>UPLOAD</strong></Button></Link>
+            <Link to={`/games`}>LEARN MORE →</Link>
+          </div>
         </Row>
-      <h4 className="h4">Search Games</h4>
-        <div className='form_container'>
+      <Carousel variant="dark">
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://www.thqnordic.com/sites/default/files/games/headers/wreckfest_header.jpg"
+      alt="First slide"
+    />
+    {/* <Carousel.Caption>
+      <h5>First slide label</h5>
+      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+    </Carousel.Caption> */}
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://www.thqnordic.com/sites/default/files/games/headers/Header_6.png"
+      alt="Second slide"
+    />
+    {/* <Carousel.Caption>
+      <h5>Second slide label</h5>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </Carousel.Caption> */}
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://www.thqnordic.com/sites/default/files/games/headers/Header_18.png"
+      alt="Third slide"
+    />
+    {/* <Carousel.Caption>
+      <h5>Third slide label</h5>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+    </Carousel.Caption> */}
+  </Carousel.Item>
+</Carousel>
+        <div className='form_container' id="home-search">
+        <h4 className="h4">Search Games</h4>
           <Form className='search_form' onSubmit={handleSubmit}>
-            <Form.Label htmlFor="inputPassword5">Write the Name of the game you want to find content for</Form.Label>
+            {/* <Form.Label htmlFor="inputPassword5">Write the Name of the game you want to find content for</Form.Label> */}
             <Form.Control
-              aria-describedby="passwordHelpBlock" type='text' id='gamesssubmit' placeholder="My Game" onChange={event => {
+              aria-describedby="passwordHelpBlock" type='text' id='gamesssubmit' placeholder="Search my game" onChange={event => {
                 setSearchTerm(event.target.value)
               }} />
           </Form>
         </div>
-        <ul className='games_list'></ul>
         {updatedGames && updatedGames.filter((games) => {
           if (searchTerm === '') {
             return updatedGames
@@ -69,11 +110,14 @@ const Home = () => {
         }).map(game => {
           const { name, image, id, genre } = game
           return (
+            <div className='game-container'>
+
+            
             <Col key={id} md="6" lg="4" className="game mb-4">
               <Card className="h-100"> 
               <Link to={`/games/${game.id}`} id="game_card_link"> 
-                <Card.Header><h3>{name}</h3>
-                </Card.Header>
+                {/* <Card.Header><h3>{name}</h3>
+                </Card.Header> */}
                 <Card.Body>
                   <Row>
                     <Col id="game-image-profile" sm>
@@ -85,10 +129,17 @@ const Home = () => {
                 </Card.Body>
                 </Link>
                 <Card.Footer className="text-center">
-                  <p>{genre}tag</p>
+                  {game.genres ?
+                    game.genres.map((genre, id) => {
+                      return (
+                        <p>{genre.name}</p>
+                      )
+                    }) : <p>No genres yet</p>}
                 </Card.Footer>
               </Card>
             </Col>
+
+            </div>
           )
         })}
       </Container>
