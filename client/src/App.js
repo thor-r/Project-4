@@ -12,6 +12,7 @@ import GameDetail from './components/GameDetail'
 import MediaDetail from './components/MediaDetail'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
+import MediaUpload from './components/MediaUpload'
 
 
 
