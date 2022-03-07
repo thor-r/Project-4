@@ -1,4 +1,3 @@
-from functools import partial
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status # status gives us a list of possible response codes
@@ -31,7 +30,7 @@ class MediaListView(APIView):
         print('SERIALZED MEDIAS ---->', serialized_medias.data)
         return Response(serialized_medias.data, status=status.HTTP_200_OK)
 
-    # Allow us to post a new record into the Media 
+    # Allow us to post a new record into the Media table
     def post(self, request):
         request.data["owner"] = request.user.id
         print('OWNER DATA ----->', request.data)
@@ -39,6 +38,7 @@ class MediaListView(APIView):
         serialized_media = MediaSerializer(data=request.data)
         try:
             serialized_media.is_valid()
+            print('IS THIS VALID ------------>', serialized_media)
             serialized_media.save()
             print(serialized_media.data)
             return Response(serialized_media.data, status=status.HTTP_201_CREATED)
@@ -59,8 +59,10 @@ class MediaDetailView(APIView):
     def get_media(self, pk):
         try: 
             # this next line looks at the primary key on the medias table and returns a record that matches the pk passed
-            return Media.objects.get(pk=pk)
-
+            media_to_show = Media.objects.get(pk=pk)
+            media_to_show.views = media_to_show.views + 1
+            media_to_show.save()
+            return media_to_show
         except Media.DoesNotExist:
             raise NotFound(detail="Media not found")
 
