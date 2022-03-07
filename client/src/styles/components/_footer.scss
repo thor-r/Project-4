@@ -1,0 +1,83 @@
+// @import url('https://fonts.googleapis.com/css?family=Karla');
+// @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&family=Poppins:wght@100&family=Roboto+Mono:wght@200&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&family=Noto+Sans&family=Nunito+Sans:wght@300&family=Poppins:wght@100&family=Roboto+Mono:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Comic+Neue:wght@700&family=Lobster&family=Noto+Sans&family=Nunito+Sans:wght@300&family=Poppins:wght@100&family=Roboto+Mono:wght@200&family=Roboto:wght@700&display=swap');
+
+
+// font-family: 'Bebas Neue', cursive;
+
+// font-family: 'Lobster', cursive;
+// font-family: 'Noto Sans', sans-serif;
+// font-family: 'Nunito Sans', sans-serif;
+// font-family: 'Poppins', sans-serif;
+// font-family: 'Roboto', sans-serif;
+// font-family: 'Roboto Mono', monospace;
+
+.footer-row {
+    margin: 15px 0px 0px 20px;
+    color: #fff;
+        h4 {
+            font-size: 25px;
+            font-family: 'Segoe UI', sans-serif;
+            span {
+                
+                    svg {
+                        color: steelblue;
+                        width: 45px;
+                        height: 45px;
+                    }
+                
+            }
+        }
+
+}
+#footer-header {
+    background-color: #1e1d1d;
+        #footer {
+            color: white;
+                a {
+                    color: grey;
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 600;
+                }
+                a:hover {
+                    color: white;
+                }
+                    .col-lg-2 {
+
+                        display: flex;
+                        flex-direction: column;
+                        a {
+                            text-decoration: none;
+                            color: grey
+                        }
+                        a:hover {
+                            color: white;
+                        }
+                        h5 {
+                            color: white;
+                        }
+                        
+                    }
+        }
+        #socials {
+            display: flex;
+            justify-content: flex-end;
+            color: white;
+            margin-bottom: 10px;
+                ul {
+                    display: flex;
+                    justify-content: center;
+                        svg {
+                            color: grey;
+                            margin-right: 50px;
+                            width: 20px;
+                            height: 25px;
+                        }
+                        svg:hover {
+                            color: white;
+                        }
+                }
+        }
+
+}

@@ -1,18 +1,5 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
-<<<<<<< HEAD
-
-function App() {
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios.get('/api/media/') // * <-- replace with your endpoint
-      console.log(data)
-    }
-    getData()
-  })
-
-  return <h1>Hello World</h1>
-=======
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // Components
@@ -33,9 +20,7 @@ function App() {
         <div className='site-wrapper'>
             <BrowserRouter>
                 <SiteNavbar />
-
                 <Routes>
-
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
@@ -43,18 +28,11 @@ function App() {
                     <Route path="/gamedetail" element={<GameDetail />} />
                     <Route path="/mediadetail" element={<MediaDetail />} />
                     <Route path="/profile" element={<Profile />} />
-                    
-
                 </Routes>
-
                 <Footer />
             </BrowserRouter>
-
-
-
         </div>
     )
->>>>>>> development
 }
 
 export default App

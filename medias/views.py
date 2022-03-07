@@ -59,8 +59,10 @@ class MediaDetailView(APIView):
     def get_media(self, pk):
         try: 
             # this next line looks at the primary key on the medias table and returns a record that matches the pk passed
-            return Media.objects.get(pk=pk)
-
+            media_to_show = Media.objects.get(pk=pk)
+            media_to_show.views = media_to_show.views + 1
+            media_to_show.save()
+            return media_to_show
         except Media.DoesNotExist:
             raise NotFound(detail="Media not found")
 

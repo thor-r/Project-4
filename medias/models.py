@@ -8,7 +8,8 @@ class Media(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     file_to_upload = models.CharField(max_length=500)
     video = models.BooleanField(default=False, blank=True)
-    screenshot = models.BooleanField(default=False, blank=True)
+    views = models.IntegerField(default=False, blank=True)
+    screenshot = models.BooleanField(default=0, blank=True)
     owner = models.ForeignKey(
         "jwt_auth.User",
         related_name="medias",

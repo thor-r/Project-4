@@ -1,12 +1,35 @@
-<<<<<<< HEAD
-* {
-  box-sizing: border-box;
-}
-=======
 @import './components/home';
 @import './components/navbar';
+@import './components//footer';
+@import './components/register';
+@import './components/login';
+@import './components/gamelist.scss';
 
 * {
     box-sizing: border-box;
   }
->>>>>>> development
+
+  .site-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+  }
+
+  .form-page{
+    form{
+      max-width: 100%;
+      width: 600px;
+      margin: 0 auto;
+      border-radius: 8px;
+      background-color:white;
+      padding: 30px;
+      button{
+        width: 200px;
+        max-width: 100%;
+      }
+      .form-text{
+        color: red;
+      }
+    }
+  }
