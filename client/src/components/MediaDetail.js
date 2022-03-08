@@ -15,6 +15,7 @@ const MediaDetail = () => {
   const [media, setMedia] = useState([])
   const [hasError, setHasError] = useState({ error: false, message: '' })
 
+
   useEffect(() => {
     const getMedia = async () => {
       try {
@@ -30,8 +31,7 @@ const MediaDetail = () => {
 
   console.log('media', media)
 
-
-
+  
 
   return (
     <>
@@ -43,7 +43,7 @@ const MediaDetail = () => {
           <Card.Body>
             <Card.Title>{media.title}</Card.Title>
             <Card.Title>Uploaded at {media.created_at}</Card.Title>
-            <Card.Title>Views {media.views}</Card.Title>
+            <Card.Title>Views {media.views} </Card.Title>
             <Card.Title></Card.Title>
             <div className="profile_image_container"><img src={media.file_to_upload} alt={media.title} /></div>
           </Card.Body>

@@ -16,10 +16,11 @@ import Carousel from 'react-bootstrap/Carousel'
 
 const Home = () => {
 
-    const [games, setGames] = useState([])
-    const [updatedGames, setUpdatedGames] = useState([])
-    const [searchTerm, setSearchTerm] = useState('')
-    const [hasError, setHasError] = useState({ error: false, message: '' })
+  const [games, setGames] = useState([])
+  const [updatedGames, setUpdatedGames] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [tagSearchTerm, setTagSearchTerm] = useState('')
+  const [hasError, setHasError] = useState({ error: false, message: '' })
 
 
     useEffect(() => {
@@ -37,16 +38,25 @@ const Home = () => {
 
     console.log("games --->",  games)
 
-    const handleSubmit = () => {
-
+    const handleChange = (event) => {
+      const regxsearch = new RegExp(event.target.value, 'i')
+      console.log(regxsearch)
+      const filteredGames = games.filter(game =>{
+          return regxsearch.test(game.name) || game.genres.some(
+            genre => regxsearch.test(genre.name)
+          )
+      })
+      console.log('f', filteredGames)
+      setUpdatedGames(filteredGames)
     }
+    
 
     return (
         <>
       <Container fluid id="home-container">
               <Row>
           <div className="home-content-1">
-        <h1>Quest is ready</h1>
+        <h2>Ready to Log</h2>
         <h4>
         SQUAD UP WITH FRIENDS IN DIFFERENT TIME ZONES. MEET UP WITH REAL PEOPLE AT VIRTUAL EVENTS. CREATE, PLAY AND EXPLORE, TOGETHER FROM WHEREVER, ON QUEST 2.
         </h4>
@@ -91,13 +101,11 @@ const Home = () => {
     </Carousel.Caption> */}
   </Carousel.Item>
 </Carousel>
-        <div className='form_container' id="home-search">
-        <h4 className="h4">Search Games</h4>
-          <Form className='search_form' onSubmit={handleSubmit}>
-            {/* <Form.Label htmlFor="inputPassword5">Write the Name of the game you want to find content for</Form.Label> */}
+<div className='tag_form_container'>
+          <Form className='tag_form' onChange={handleChange}>
             <Form.Control
-              aria-describedby="passwordHelpBlock" type='text' id='gamesssubmit' placeholder="Search my game" onChange={event => {
-                setSearchTerm(event.target.value)
+              aria-describedby="passwordHelpBlock" type='text' id='tagsubmit' placeholder="Search Game by Name or Tag" onChange={event => {
+                setTagSearchTerm(event.target.value)
               }} />
           </Form>
         </div>
@@ -108,7 +116,7 @@ const Home = () => {
             return updatedGames
           }
         }).map(game => {
-          const { name, image, id, genre } = game
+          const { image, id } = game
           return (
             <div className='game-container'>
 

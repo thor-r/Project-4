@@ -38,7 +38,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-        await axios.post('/api/register', formData)
+        await axios.post('api/auth/register/', formData)
         navigate('/login')
     } catch (err) {
         setFormErrors(err.response.data.errors)
@@ -83,7 +83,7 @@ const Register = () => {
             <Form.Control onChange={handleChange}
                 type="text" 
                 name="profile_image" 
-                placeholder="Please upload your profile image"
+                placeholder="Upload your profile image"
                 defaultValue={formData.profile_image}
             />
             {formErrors.profile_image && (

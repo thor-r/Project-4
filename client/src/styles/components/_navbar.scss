@@ -7,28 +7,46 @@
 // font-family: 'Karla', sans-serif;
 
 .container {
-    a {
-        .logo-span {
-            svg {
-                width: 45px;
-                height: 45px;
-                color: steelblue;
-            }
-        }
-        .logs-span {
-            svg {
-            width: 25px;
-            height: 25px;
-            color: steelblue;
-            }
-        }
+  a {
+    .logo-span {
+      svg {
+        width: 45px;
+        height: 45px;
+        color: steelblue;
+      }
     }
+    .logs-span {
+      svg {
+        width: 25px;
+        height: 25px;
+        color: steelblue;
+      }
+    }
+    .profile-icon {
+      width: 30px;
+      height: 30px;
+    }
+    .profile-icon:hover {
+      color: red;
+    }
+    .logout-icon {
+      margin-bottom: 5px;
+      margin-right: 2px;
+    }
+  }
 }
 .navbar-collapse {
-    .navbar-nav {
-        .nav-link { // Login / Register 
-            color: black;
-            font-size: 20px;
-        }
-    }      
+  .navbar-nav {
+    .nav-link {
+      // Login / Register
+      color: black;
+      font-size: 22px;
+      svg {
+        margin-bottom: 5px;
+      }
+    }
+    .nav-link:hover {
+      color: red;
+    }
+  }
 }

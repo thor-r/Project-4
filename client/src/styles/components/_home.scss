@@ -93,13 +93,6 @@
 }
 
 
-
-
-
-
-
-
-
 .game-container {
   display: flex;
   flex-direction: row;
@@ -119,4 +112,7 @@ Col {
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  img {
+    border-radius: 10px;
+  }
 }

@@ -14,6 +14,9 @@ const GameDetail = () => {
   const [game, setGame] = useState([])
   const [hasError, setHasError] = useState({ error: false, message: '' })
 
+  const { mediaId } = useParams()
+  const [media, setMedia] = useState([])
+
   useEffect(() => {
     const getGame = async () => {
       try {
@@ -26,7 +29,20 @@ const GameDetail = () => {
     getGame()
   }, [gameId])
 
-  console.log('game', game)
+    console.log('game', game)
+
+    useEffect(() => {
+      const getMedia = async () => {
+        try {
+          const { data } = await axios.get(`/api/media/${mediaId}`)
+          setMedia(data)
+          console.log('media/data.owner',data.owner)
+        } catch (err) {
+          setHasError({ error: true, message: err.message })
+        }
+      }
+      getMedia()
+    }, [mediaId])
 
 
 
@@ -57,7 +73,7 @@ const GameDetail = () => {
                     <br></br>
                     <video className="video-container" src={media.file_to_upload} width="350" height="250" controls></video>
                     <br></br>
-                    <span className='media-description'>{media.description}</span>
+                    <span className='media-description'>{media.description}</span> <span className='views-container'>{media.views} Views</span>
                       
                       </div>
                   </Card.Body>

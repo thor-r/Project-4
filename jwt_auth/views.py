@@ -1,8 +1,10 @@
+from xmlrpc.client import ResponseError
 from rest_framework.views import APIView
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
+from django.db import IntegrityError
 from .serializers.common import UserSerializer
 from datetime import datetime, timedelta 
 import jwt
@@ -18,10 +20,36 @@ class RegisterView(APIView):
         user_to_create = UserSerializer(data=request.data)
         try:
             user_to_create.is_valid()
+            print('TRYING TO REGISTER --------->',user_to_create)
             user_to_create.save()
             return Response(user_to_create.data, status=status.HTTP_201_CREATED)
-        except: 
-            return Response("Failed to create user, password must have numbers and symbols", status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        except AssertionError as e:
+            print('HERES THE ERROR -------->', str(e))
+            return Response({
+                "detail": str(e) # e is a type: AssertionError, we need to convert this into a string, as AssertionError can't be converted into JSON
+            }, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        except IntegrityError as e:
+            return Response({
+                "detail": str(e) # e is a type: AssertionError, we need to convert this into a string, as AssertionError can't be converted into JSON
+            }, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        except:
+            print('ERRORS ------>', user_to_create.errors)
+            return Response({ "detail": user_to_create.errors })
+          
+
+          
+          
+
+
+
+
+
+
+
+
+
+          
+            # return Response("Failed to create user, password must have numbers and symbols", status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
 class LoginView(APIView):
