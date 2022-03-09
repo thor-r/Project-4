@@ -17,6 +17,7 @@ const GameDetail = () => {
   const { mediaId } = useParams()
   const [media, setMedia] = useState([])
 
+
   useEffect(() => {
     const getGame = async () => {
       try {
@@ -29,6 +30,7 @@ const GameDetail = () => {
     
     getGame()
   }, [gameId])
+  
 
   console.log('game', game)
 
@@ -37,7 +39,7 @@ const GameDetail = () => {
       try {
         const { data } = await axios.get('/api/media/')
         setMedia(data)
-        console.log('media/data.owner', data.owner)
+  
       } catch (err) {
         setHasError({ error: true, message: err.message })
       }
@@ -64,7 +66,7 @@ const GameDetail = () => {
         {game.medias ? 
           game.medias.map((media, id) => {
             return (
-              media.video === true ?
+              // media.video === true ?
                 <>
                   <Card className="media-profile-card">
                     <Card.Body>
@@ -81,20 +83,20 @@ const GameDetail = () => {
                 </>
                 //This is the ternary point for video or images 
                 //Make sure the classNames and divs are the same on both sides of this point for styling!!!
-                : 
-                <>
-                  <Card className="media-profile-card">
-                    <Card.Body>
-                      <div className="media_image_container">
-                        <Link to={`/mediadetail/${media.id}`} className='media-title'>{media.title} </Link>
-                        <br></br>
-                        <img className="image-container" src={media.file_to_upload} alt={media.title} />
-                        <br></br>
-                        <span className='media-description'>{media.description}</span> <span className='views-container'>{media.views} Views</span> <span className='uploadedby-container'> Created by {media.owner.profile_name}</span> <span className='createdat-container'> Uploaded at {media.created_at}</span>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </>
+              //   : 
+              //   <>
+              //     <Card className="media-profile-card">
+              //       <Card.Body>
+              //         <div className="media_image_container">
+              //           <Link to={`/mediadetail/${media.id}`} className='media-title'>{media.title} </Link>
+              //           <br></br>
+              //           <img className="image-container" src={media.file_to_upload} alt={media.title} />
+              //           <br></br>
+              //           <span className='media-description'>{media.description}</span> <span className='views-container'>{media.views} Views</span> <span className='uploadedby-container'> Created by {media.owner.profile_name}</span> <span className='createdat-container'> Uploaded at {media.created_at}</span>
+              //         </div>
+              //       </Card.Body>
+              //     </Card>
+              //   </>
               )
               
           }) 
@@ -103,11 +105,6 @@ const GameDetail = () => {
     </>
   )
 }
-
-
-
-
-
 
 
 export default GameDetail

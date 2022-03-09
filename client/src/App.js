@@ -7,7 +7,6 @@ import SiteNavbar from './components/SiteNavbar'
 import Home from './components/Home'
 import Footer from './components/Footer'
 import Profile from './components/Profile'
-import GameList from './components/GameList'
 import GameDetail from './components/GameDetail'
 import MediaDetail from './components/MediaDetail'
 import Register from './components/auth/Register'
@@ -26,7 +25,6 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/games" element={<GameList />} />
                     <Route path="/games/:gameId" element={<GameDetail />} />
                     <Route path="/mediadetail/:mediaId" element={<MediaDetail />} />
                     <Route path="/profile" element={<Profile />} />

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 // Bootstrap 
@@ -6,8 +7,11 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 import { ImageUploadField } from './ImageUpload.js'
+import { getTokenFromLocalStorage } from '../helpers/auth'
 
 const MediaUploadForm = () => {
+
+    const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
       title: '',
@@ -34,11 +38,21 @@ const MediaUploadForm = () => {
       setFormData({ ...formData, [event.target.name]: value })
     }
   
-    const handleSubmit = event => {
-      event.preventDefault()
-      window.alert(`Submitting ${JSON.stringify(formData, null, 2)}`)
+    const handleSubmit = async (e) => {
+      e.preventDefault() // prevent reload
+      try {
+        console.log(getTokenFromLocalStorage())
+        await axios.post('/api/media/', formData, {
+          headers: {
+            Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+          },
+        })
+        
+        navigate('/')
+      } catch (err) {
+        setFormErrors(err.response.data.errors)
+      }
     }
-  
   
 
 
@@ -180,7 +194,7 @@ const MediaUploadForm = () => {
 
 
 
-<Button type="button" className="btn btn-dark">Confirm</Button>
+<Button onClick={handleSubmit} type="button" className="btn btn-dark">Confirm</Button>
 </form>
 
     )

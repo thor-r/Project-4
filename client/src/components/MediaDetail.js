@@ -90,7 +90,7 @@ const MediaDetail = () => {
   
 
   return (
-    media.video === true ?
+    // media.video === true ?
     <>
       <h1>This is the {media.title} page</h1>
       <p>{media.description}</p>
@@ -121,7 +121,7 @@ const MediaDetail = () => {
                 <Card className="comment-profile-card">
                   <Card.Body>
                   <p>{comment.owner.profile_name} says</p>
-                  <div className="comment_owner_image_container"><img src={mediaOwner.profile_image} alt={comment.owner.profile_name} /></div>
+                  <div className="comment_owner_image_container"><img src={comment.owner.profile_image} alt={comment.owner.profile_name} /></div>
                     <p>{comment.text}</p>
                   </Card.Body>
                 </Card>
@@ -140,75 +140,78 @@ const MediaDetail = () => {
               <Form.Group className='mb-2'>
                 <Form.Label htmlFor='text'>Enter Your Comment Here</Form.Label>
                 <Form.Control onChange={handleChange} type="text" name="text" placeholder="Comment text" />
+                <Form.Control className='bot-box' onClick={handleChange} type="number" min="0" max="100" name="media" placeholder={media.id} defaultValue={media.id}/>
               </Form.Group>
-              <Form.Group className='mb-2'>
+
+              {/* <Form.Group className='mb-2 bot-box'>
                 <Form.Label htmlFor="media">Check you are not a Bot : Enter the Number Below</Form.Label>
-                <Form.Control onChange={handleChange} type="number" min="0" max="100" name="media" placeholder={media.id} />
-              </Form.Group>
+                <Form.Control onChange={handleChange} type="number" min="0" max="100" name="media" placeholder={media.id} defaultValue={media.id}/>
+              </Form.Group> */}
+
             </Form>
             <div className="profile-buttons">
               <Button onClick={handleSubmit} variant="primary" type="submit">Post Your Comment</Button>
             </div>
 
     </>
-    //This is the ternary point for video or images 
-    //Make sure the classNames and divs are the same on both sides of this point for styling!!!
+    // //This is the ternary point for video or images 
+    // //Make sure the classNames and divs are the same on both sides of this point for styling!!!
 
-    :
-    <>
-      <h1>This is the {media.title} page</h1>
-      <p>{media.description}</p>
-      <p>{mediaOwner.profile_name}</p>
-      <div className="owner_image_container"><img src={mediaOwner.profile_image} alt={mediaOwner.name} /></div>
-      <p>{mediaOwner.bio}</p>
+    // :
+    // <>
+    //   <h1>This is the {media.title} page</h1>
+    //   <p>{media.description}</p>
+    //   <p>{mediaOwner.profile_name}</p>
+    //   <div className="owner_image_container"><img src={mediaOwner.profile_image} alt={mediaOwner.name} /></div>
+    //   <p>{mediaOwner.bio}</p>
 
 
-      <div className="mediaProfile">
-        <Card className="info-card">
-          <Card.Body>
-            <Card.Title>{media.title}</Card.Title>
-            <Card.Title>Uploaded at {media.created_at}</Card.Title>
-            <Card.Title>Views {media.views} </Card.Title>
-            <Card.Title></Card.Title>
-            <div className="profile_image_container">
-              <img className="image_container" src={media.file_to_upload} alt={media.title} />
-              </div>
-          </Card.Body>
-        </Card>
-      </div>
+    //   <div className="mediaProfile">
+    //     <Card className="info-card">
+    //       <Card.Body>
+    //         <Card.Title>{media.title}</Card.Title>
+    //         <Card.Title>Uploaded at {media.created_at}</Card.Title>
+    //         <Card.Title>Views {media.views} </Card.Title>
+    //         <Card.Title></Card.Title>
+    //         <div className="profile_image_container">
+    //           <img className="image_container" src={media.file_to_upload} alt={media.title} />
+    //           </div>
+    //       </Card.Body>
+    //     </Card>
+    //   </div>
 
-      <div className="media-info">
-        {media.comments ? 
-          media.comments.map((comment, id) => {
-            return (
-              <>
-                <Card className="comment-profile-card">
-                  <Card.Header> User Commented On This</Card.Header>
-                  <Card.Body>
-                    <p>{comment.owner.profile_name} says</p>
-                  <div className="comment_owner_image_container"><img src={mediaOwner.profile_image} alt={comment.owner.profile_name} /></div>
-                    <p>{comment.text}</p>
-                  </Card.Body>
-                </Card>
-              </>
-            )
-          }) : <p>No comments yet</p>}
-      </div>
-      <Form className='mt-4'>
-              <Form.Group className='mb-2'>
-                <Form.Label htmlFor='text'>Enter Your Comment Here</Form.Label>
-                <Form.Control onChange={handleChange} type="text" name="text" placeholder="Comment text" />
-              </Form.Group>
-              <Form.Group className='mb-2'>
-                <Form.Label htmlFor="media">Check you are not a Bot : Enter the Number Below</Form.Label>
-                <Form.Control onChange={handleChange} type="number" min="0" max="100" name="media" placeholder={media.id} />
-              </Form.Group>
-            </Form>
-            <div className="profile-buttons">
-              <Button onClick={handleSubmit} variant="primary" type="submit">Post Your Comment</Button>
-            </div>
+    //   <div className="media-info">
+    //     {media.comments ? 
+    //       media.comments.map((comment, id) => {
+    //         return (
+    //           <>
+    //             <Card className="comment-profile-card">
+    //               <Card.Header> User Commented On This</Card.Header>
+    //               <Card.Body>
+    //                 <p>{comment.owner.profile_name} says</p>
+    //               <div className="comment_owner_image_container"><img src={comment.owner.profile_image} alt={comment.owner.profile_name} /></div>
+    //                 <p>{comment.text}</p>
+    //               </Card.Body>
+    //             </Card>
+    //           </>
+    //         )
+    //       }) : <p>No comments yet</p>}
+    //   </div>
+    //   <Form className='mt-4'>
+    //           <Form.Group className='mb-2'>
+    //             <Form.Label htmlFor='text'>Enter Your Comment Here</Form.Label>
+    //             <Form.Control onChange={handleChange} type="text" name="text" placeholder="Comment text" />
+    //           </Form.Group>
+    //           <Form.Group className='mb-2'>
+    //             <Form.Label htmlFor="media">Check you are not a Bot : Enter the Number Below</Form.Label>
+    //             <Form.Control onChange={handleChange} type="number" min="0" max="100" name="media" placeholder={media.id} />
+    //           </Form.Group>
+    //         </Form>
+    //         <div className="profile-buttons">
+    //           <Button onClick={handleSubmit} variant="primary" type="submit">Post Your Comment</Button>
+    //         </div>
 
-      </>
+    //   </>
   )
 }
 
