@@ -1,0 +1,11 @@
+.profile_image_container {
+  display: flex;
+  video {
+    border-radius: 8px;
+    background-size: 100%;
+    width: 600px;
+    height: 580px;
+    height: 100%;
+    margin: 0 auto;
+  }
+}

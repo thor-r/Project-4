@@ -9,95 +9,94 @@
 // font-family: 'Roboto Mono', monospace;
 
 .home-content-1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 50px;
-        h1 ,h4 {
-            letter-spacing: -0.03em;
-        }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  h1,
+  h4 {
+    letter-spacing: -0.03em;
+  }
 }
 
 .home-buttons-1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 30px;
-        button {
-                border-radius: 30px;
-                border: none;
-                text-align: center;
-                font-size: 20px;
-                padding: 10px 35px;
-                transition: all 0.5s;
-                cursor: pointer;
-                margin-bottom: 15px;
-                margin-right: 20px;
-                box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
-              }
-              
-              button{
-                cursor: pointer;
-                display: inline-block;
-                position: relative;
-                transition: 0.5s;
-              }
-              
-              button:after {
-                content: '»';
-                position: absolute;
-                opacity: 0;  
-                bottom: 11px;
-                right: -20px;
-                transition: 0.5s;
-                padding-right: 5px;
-              }
-              
-              button:hover{
-                padding-right: 30px;
-                padding-left: 20px;
-              }
-              
-              button:hover:after {
-                opacity: 1;
-                right: 5px;
-              }
-        }
-        a {
-            text-decoration: none;
-            color:black;
-        }
-        a:hover {
-            color: red;
-        }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 30px;
+  button {
+    border-radius: 30px;
+    border: none;
+    text-align: center;
+    font-size: 20px;
+    padding: 10px 35px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-bottom: 15px;
+    margin-right: 20px;
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+  }
 
+  button {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  button:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    bottom: 11px;
+    right: -20px;
+    transition: 0.5s;
+    padding-right: 5px;
+  }
+
+  button:hover {
+    padding-right: 30px;
+    padding-left: 20px;
+  }
+
+  button:hover:after {
+    opacity: 1;
+    right: 5px;
+  }
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  color: red;
+}
 
 #home-container {
-    padding-left: 0px;
-    padding-right: 0px;
-#home-search {
+  padding-left: 0px;
+  padding-right: 0px;
+  #home-search {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #efefef;
     padding-top: 20px;
     padding-bottom: 25px;
-        h4 {
-            font-size: 30px;
-        }
-}
+    h4 {
+      font-size: 30px;
+    }
+  }
 }
 
 .game {
-    margin-top: 10px;
+  margin-top: 10px;
 }
-
 
 .game-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 Col {
@@ -114,5 +113,64 @@ Col {
   flex-wrap: wrap;
   img {
     border-radius: 10px;
+    background-size: cover;
   }
 }
+
+.tags-buttons {
+  border-radius: 20px;
+  background-color: #4789ec;
+  border: none;
+  color: white;
+  margin-top: 8px;
+  width: 40%;
+  font-size: 12px;
+}
+.tags-buttons:hover {
+  background-color: #0b5ed8;
+  color: black;
+}
+
+.tag_form {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  background-color: black;
+  input {
+    width: 52vw;
+  }
+}
+.games-show-row {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  padding-bottom: 30px;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 11%,
+    rgba(255, 255, 255, 1) 29%
+  );
+  .games-show-card {
+    display: flex;
+    width: 18rem;
+    padding: 0px;
+    margin: 20px;
+    border: none;
+    background: none;
+    img {
+      border-radius: 5px;
+    }
+    .card-body {
+      .vstack {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+  }
+  .games-show-card:hover {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+

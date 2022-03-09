@@ -32,6 +32,24 @@
   font-weight: bold;
 }
 
+.media-info {
+  // display: flex;
+  // flex-direction: row;
+  // justify-content: space-evenly;
+  // flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 0 auto;
+}
+
+.profile_image_container {
+  img {
+    max-width: 256px;
+    max-height: 350px;
+    border-radius: 4px;
+  }
+}
+
 
 
 

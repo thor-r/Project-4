@@ -26,23 +26,24 @@ const GameDetail = () => {
         setHasError({ error: true, message: err.message })
       }
     }
+    
     getGame()
   }, [gameId])
 
-    console.log('game', game)
+  console.log('game', game)
 
-    useEffect(() => {
-      const getMedia = async () => {
-        try {
-          const { data } = await axios.get(`/api/media/${mediaId}`)
-          setMedia(data)
-          console.log('media/data.owner',data.owner)
-        } catch (err) {
-          setHasError({ error: true, message: err.message })
-        }
+  useEffect(() => {
+    const getMedia = async () => {
+      try {
+        const { data } = await axios.get('/api/media/')
+        setMedia(data)
+        console.log('media/data.owner', data.owner)
+      } catch (err) {
+        setHasError({ error: true, message: err.message })
       }
-      getMedia()
-    }, [mediaId])
+    }
+    getMedia()
+  }, [])
 
 
 
@@ -60,27 +61,44 @@ const GameDetail = () => {
       </div>
 
       <div className="media-info">
-        {game.medias ?
+        {game.medias ? 
           game.medias.map((media, id) => {
             return (
-              <>
-                <Card className="media-profile-card">
-                  {/* <Card.Header> {media.title}</Card.Header>
-                  <Card.Header> {media.description}</Card.Header> */}
-                  <Card.Body>
-                    <div className="media_image_container">
-                    <Link to={`/mediadetail/${media.id}`}  className='media-title'>{media.title} </Link>
-                    <br></br>
-                    <video className="video-container" src={media.file_to_upload} width="350" height="250" controls></video>
-                    <br></br>
-                    <span className='media-description'>{media.description}</span> <span className='views-container'>{media.views} Views</span>
-                      
+              media.video === true ?
+                <>
+                  <Card className="media-profile-card">
+                    <Card.Body>
+                      <div className="media_image_container">
+                        <Link to={`/mediadetail/${media.id}`} className='media-title'>{media.title} </Link>
+                        <br></br>
+                        <video className="video-container" src={media.file_to_upload} width="350" height="250" controls></video>
+                        <br></br>
+                        <span className='media-description'>{media.description}</span> <span className='views-container'>{media.views} Views</span> <span className='uploadedby-container'> Created by {media.owner.profile_name}</span> <span className='createdat-container'> Uploaded at {media.created_at}</span>
+
                       </div>
-                  </Card.Body>
-                </Card>
-              </>
-            )
-          }) : <p>No media yet</p>}
+                    </Card.Body>
+                  </Card>
+                </>
+                //This is the ternary point for video or images 
+                //Make sure the classNames and divs are the same on both sides of this point for styling!!!
+                : 
+                <>
+                  <Card className="media-profile-card">
+                    <Card.Body>
+                      <div className="media_image_container">
+                        <Link to={`/mediadetail/${media.id}`} className='media-title'>{media.title} </Link>
+                        <br></br>
+                        <img className="image-container" src={media.file_to_upload} alt={media.title} />
+                        <br></br>
+                        <span className='media-description'>{media.description}</span> <span className='views-container'>{media.views} Views</span> <span className='uploadedby-container'> Created by {media.owner.profile_name}</span> <span className='createdat-container'> Uploaded at {media.created_at}</span>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </>
+              )
+              
+          }) 
+          : <p>No media yet</p>}
       </div>
     </>
   )
@@ -89,7 +107,7 @@ const GameDetail = () => {
 
 
 
-                
+
 
 
 export default GameDetail

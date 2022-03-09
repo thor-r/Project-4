@@ -12,7 +12,8 @@ import GameDetail from './components/GameDetail'
 import MediaDetail from './components/MediaDetail'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
-import MediaUpload from './components/MediaUpload'
+import MediaUploadForm from './components/MediaUploadForm'
+
 
 
 
@@ -29,6 +30,7 @@ function App() {
                     <Route path="/games/:gameId" element={<GameDetail />} />
                     <Route path="/mediadetail/:mediaId" element={<MediaDetail />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/upload" element={<MediaUploadForm />} />
                 </Routes>
                 <Footer />
             </BrowserRouter>
