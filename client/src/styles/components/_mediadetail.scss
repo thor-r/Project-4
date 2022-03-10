@@ -28,21 +28,6 @@ margin-top: 10px;
 margin-bottom: 10px;
 }
 
-.form-control {
-  margin: 0 auto;
-  width: 450px;
-}
-
-.comment-text {
-  margin-left: 125px;
-  font-weight: 300;
-}
-
-.mt-4 {
-  display: flex;
-  justify-content: center;
-}
-
 .btn-comment {
   max-width: 150px;
   max-height: 45px;
@@ -82,3 +67,11 @@ margin-bottom: 10px;
  
 }
 
+.comment-text {
+  // margin-left: 125px;
+  font-weight: 300;
+}
+
+.enter-comment {
+  margin: 0 auto;
+}

@@ -151,7 +151,7 @@ const MediaDetail = () => {
             )
           }) : <p>No comments yet</p>}
       </div>
-      <Form className='mt-4'>
+      <Form className='enter-comment'>
               <Form.Group className='mb-2'>
                 <Form.Label htmlFor='text'><span className='comment-text'>Enter your Comment Here</span></Form.Label>
                 <Form.Control onChange={handleChange} type="text" name="text" placeholder="Comment text" />
