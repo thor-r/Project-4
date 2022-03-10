@@ -145,30 +145,31 @@ const MediaDetail = () => {
                   <Button variant='danger' onClick={deleteComment}>Delete Comment</Button>
                 </div>
                 :
-                <p>login to delete comment</p>
+                <p></p>
               }
               </>
             )
           }) : <p>No comments yet</p>}
       </div>
-      <Form className='enter-comment'>
+      <>
+        {userIsAuthenticated() ?
+          <>
+            <Form className='enter-comment'>
               <Form.Group className='mb-2'>
                 <Form.Label htmlFor='text'><span className='comment-text'>Enter your Comment Here</span></Form.Label>
                 <Form.Control onChange={handleChange} type="text" name="text" placeholder="Comment text" />
               </Form.Group>
             </Form>
 
-              <div className='click-add'>Click to add your comment</div>
+            <div className='click-add'>Click to add your comment</div>
             <div className="comment-submit">
               <Button onClick={handleSubmit} className='btn-comment' type="submit">
-                <Form.Control className='bot-box' onMouseEnter={handleChange} type="number" min="0" max="100" name="media" placeholder='Post your Comment' defaultValue={media.id}/></Button>
+                <Form.Control className='bot-box' onMouseEnter={handleChange} type="number" min="0" max="100" name="media" placeholder='Post your Comment' defaultValue={media.id} /></Button>
             </div>
+          </>
+          : <p>Login in to comment</p>}
+      </>
 
-            {/* <div className='click-add'>Click to add your comment</div>
-            <div className="comment-submit">
-              <Button onClick={handleSubmit} variant="primary" type="submit">
-                <input className='bot-box' onMouseEnter={handleChange} type="number" min="0" max="100" name="media" placeholder='Post your Comment' defaultValue={media.id}/></Button>
-            </div> */}
       
       {userIsAuthenticated() ?
         <div className="buttons mb-4">
@@ -177,10 +178,7 @@ const MediaDetail = () => {
         :
         <div></div>
       }
-            
-
-            
-
+      
     </>
     // //This is the ternary point for video or images 
     // //Make sure the classNames and divs are the same on both sides of this point for styling!!!
