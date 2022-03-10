@@ -1,11 +1,104 @@
-.profile_image_container {
+.media-owner-card {
+  flex-direction: column;
+  img {
+    max-width: 150px;
+    border-radius: 100px;
+  }
+}
+
+.comments-profile-card {
+  flex-direction: row;
+
+  .card-header {
+    background: none;
+    display: flex;
+    align-items: center;
+    img {
+      max-width: 80px;
+      border-radius: 100px;
+    }
+  }
+}
+.media-detail-info {
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.media-owner-card-body {
+  button {
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+    svg {
+      margin-right: 7px;
+    }
+  }
+}
+
+#delete-comment-btn {
+  margin: 10px 0px 10px 80px;
+}
+.views-date-container {
+  display: flex;
+  // align-items: flex-end;
+  margin-right: 100px;
+  .date-container {
+    margin-bottom: 0px;
+  }
+  .views-container {
+    margin-right: 5px;
+    margin-bottom: 0px;
+  }
+}
+.media-information-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.video-information-container {
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
+}
+.video-icons-container {
+  display: flex;
+
+  .video-icons {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    background: none;
+    color: black;
+    svg {
+      margin-right: 5px;
+    }
+  }
+}
+// .media-info {
+//   display: flex;
+//   flex-direction: column;
+//   .comment-profile-card {
+//     width: 100%;
+//     img {
+//       max-width: 150px;
+//     }
+//   }
+// }
+
+// .media-info {
+//   display: inline;
+//   width: 100%;
+// }
+.profile_image_container {
+  // display: flex;
+  // width: 100%;
+
   video {
     border-radius: 8px;
     background-size: 100%;
-    width: 600px;
-    height: 580px;
+    width: 50%;
+    height: 30%;
     height: 100%;
     margin: 0 auto;
   }
@@ -22,10 +115,10 @@
 }
 
 .click-add {
-margin: 0 auto;
-font-weight: 300;
-margin-top: 10px;
-margin-bottom: 10px;
+  margin: 0 auto;
+  font-weight: 300;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .btn-comment {
@@ -38,10 +131,10 @@ margin-bottom: 10px;
   background-repeat: no-repeat;
   border: none;
   &:hover {
-  background: url('https://i.imgur.com/XdSzjiX.png') center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  cursor: pointer;
+    background: url('https://i.imgur.com/XdSzjiX.png') center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
   }
 }
 
@@ -58,13 +151,11 @@ margin-bottom: 10px;
 .card-body {
   // margin: 0 auto;
   width: 100%;
-  
 }
 
 .info-card {
   width: 100%;
   margin: 0 auto;
- 
 }
 
 .comment-text {

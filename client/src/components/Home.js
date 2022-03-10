@@ -14,11 +14,14 @@ import Image from 'react-bootstrap/Image'
 // import FormControl from 'react-bootstrap/FormControl'
 
 const Home = () => {
+
   const [games, setGames] = useState([])
   const [updatedGames, setUpdatedGames] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [tagSearchTerm, setTagSearchTerm] = useState('')
   const [hasError, setHasError] = useState({ error: false, message: '' })
+
+  const [five, setFive] = useState([])
 
   useEffect(() => {
     const getGames = async () => {
@@ -48,16 +51,57 @@ const Home = () => {
     setUpdatedGames(filteredGames)
   }
 
+  useEffect(() => {
+    const getFive = async () => {
+      try {
+        const { data } = await axios.get('/api/media/')
+        setFive(data)
+        console.log('RETURNED MEDIAS ------>',data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getFive()
+    
+  }, [])
+  
+
+  const topFiveMedias = () => {
+    if (five) {
+      five.sort((a,b) => a.views - b.views)
+    }
+  }
+  console.log('SORTED MEDIA ---------->',five.sort)
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <>
       <Container fluid id="home-container">
         <Row>
           <div className="home-content-1">
-            <h2>Ready to Log</h2>
+            <h2 className='ready'><span>Ready To Log Ready To</span></h2>
             <h4>
-              SQUAD UP WITH FRIENDS IN DIFFERENT TIME ZONES. MEET UP WITH REAL
-              PEOPLE AT VIRTUAL EVENTS. CREATE, PLAY AND EXPLORE, TOGETHER FROM
-              WHEREVER, ON QUEST 2.
+            LOG YOUR BEST GAMING MOMENTS ▶︎ WATCH THE CLIPS THAT YOU LOVE ▶︎ CONNECT WITH STREAMERS ▶︎ CREATE MEMORIES AND BECOME LEGENDARY ▶︎ TAKE YOUR GAMING TO THE NEXT LEVEL. 
             </h4>
           </div>
           <div className="home-buttons-1">
@@ -105,6 +149,40 @@ const Home = () => {
         </Form.Group>
 
         <Row className="games-show-row">
+
+          {/* {topFiveMedias.map((media, i) => {
+            if (media.views =)
+          })} */}
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           {updatedGames &&
             updatedGames
               .filter((games) => {

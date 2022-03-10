@@ -60,6 +60,3 @@ const Footer = () => {
 
 export default Footer
 
-// {/* <div className="footer-bottom">
-//                 <p className="text xs-center">&copy;{new Date().getFullYear()} Video Games App - London - United Kingdom</p>
-//             </div> */}

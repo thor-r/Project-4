@@ -184,11 +184,6 @@ Col {
 
 }
 
-// #game_card_link:hover {
- 
-
-// }
-
 .games-show-card:hover {
   // border-left: solid #0b5ed8 8px;
   // border-bottom: solid #0b5ed8 6px;
@@ -197,4 +192,14 @@ Col {
   transform: scale(1.1);
   background-size: 100%;
   opacity: 0.7;
+}
+
+.ready {
+  background: url('https://i.imgur.com/gGOWRN5.png') center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-bottom: 20px;
+  span {
+    opacity: 0;
+  }
 }
