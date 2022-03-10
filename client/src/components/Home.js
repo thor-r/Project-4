@@ -119,11 +119,15 @@ const Home = () => {
               .map((game) => {
                 const { image, id } = game
                 return (
+                  <>
                   <Card className="games-show-card">
+
                     <Link to={`/games/${game.id}`} id="game_card_link">
                       <Card.Img variant="top" src={image} />
                     </Link>
+                  
                     <Card.Body>
+
                       <Stack gap={1}>
                         {game.genres ? (
                           game.genres.map((genre, id) => {
@@ -137,8 +141,11 @@ const Home = () => {
                           <Button className="tags-buttons">No tags yet</Button>
                         )}
                       </Stack>
+
                     </Card.Body>
+
                   </Card>
+                  </>
                 )
               })}
         </Row>

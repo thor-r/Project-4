@@ -190,10 +190,6 @@ const MediaUploadForm = () => {
     handleImageUrl={handleImageUrl}
   />
 
-
-
-
-
 <Button onClick={handleSubmit} type="button" className="btn btn-dark">Confirm</Button>
 </form>
 

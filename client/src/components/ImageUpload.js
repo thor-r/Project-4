@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
+
+
 export const ImageUploadField = ({ handleImageUrl, setFormData, value }) => {
 
   const handleUpload = async event => {
@@ -10,6 +12,8 @@ export const ImageUploadField = ({ handleImageUrl, setFormData, value }) => {
     const res = await axios.post('https://api.cloudinary.com/v1_1/sei61cloud/video/upload', data)
     handleImageUrl(res.data.url)
   }
+
+
 
   return (
     <>

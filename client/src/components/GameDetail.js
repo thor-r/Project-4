@@ -75,7 +75,7 @@ const GameDetail = () => {
                         <br></br>
                         <video className="video-container" src={media.file_to_upload} width="350" height="250" controls></video>
                         <br></br>
-                        <span className='media-description'>{media.description}</span> <span className='views-container'>{media.views} Views</span> <span className='uploadedby-container'> Created by {media.owner.profile_name}</span> <span className='createdat-container'> Uploaded at {media.created_at}</span>
+                        <span className='media-description'>{media.description}</span> <span className='views-container'>{media.views} Views</span> <span className='uploadedby-container'> Uploaded by {media.owner.profile_name}</span> <span className='createdat-container'> Uploaded at {media.created_at}</span>
 
                       </div>
                     </Card.Body>

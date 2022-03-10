@@ -153,11 +153,12 @@ Col {
   );
   .games-show-card {
     display: flex;
-    width: 18rem;
+    width: 17rem;
     padding: 0px;
     margin: 20px;
     border: none;
     background: none;
+    background-size: 100%;
     img {
       border-radius: 5px;
     }
@@ -168,9 +169,31 @@ Col {
       }
     }
   }
-  .games-show-card:hover {
-    opacity: 0.7;
-    transform: scale(1.1);
-  }
+
 }
 
+.card-body {
+  flex-wrap: wrap;
+  max-width: 400px;
+}
+
+.vstack {
+  width: 100%;
+  min-height: 30px;
+  min-width: 100px;
+
+}
+
+// #game_card_link:hover {
+ 
+
+// }
+
+.games-show-card:hover {
+  // border-left: solid #0b5ed8 8px;
+  // border-bottom: solid #0b5ed8 6px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  transform: scale(1.1);
+  background-size: 100%;
+}

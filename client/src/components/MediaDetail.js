@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -13,6 +13,8 @@ import { getTokenFromLocalStorage, getPayload, userIsAuthenticated } from '../he
 const MediaDetail = () => {
   const { mediaId } = useParams()
   const { id } = useParams()
+
+  const navigate = useNavigate()
 
   const [media, setMedia] = useState([])
   const [hasError, setHasError] = useState({ error: false, message: '' })
@@ -46,6 +48,19 @@ const MediaDetail = () => {
 
   console.log('media', media)
   console.log('media/data.owner', mediaOwner)
+
+  const deleteMedia = async () => {
+    try {
+      await axios.delete(`/api/media/${mediaId}`, {
+        headers: {
+          Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+        },
+      })
+      navigate('/')
+    } catch (err) {
+      setFormErrors(err.response.data.errors)
+    }
+  }
 
   const userIsOwner = () => {
     const payload = getPayload()
@@ -107,7 +122,7 @@ const MediaDetail = () => {
             <Card.Title>Views {media.views} </Card.Title>
             <Card.Title></Card.Title>
             <div className="profile_image_container">
-              <video className="video-container" src={media.file_to_upload} width="350" height="250" controls></video>
+              <video className="single-video" src={media.file_to_upload} width="350" height="250" controls></video>
               </div>
           </Card.Body>
         </Card>
@@ -138,20 +153,33 @@ const MediaDetail = () => {
       </div>
       <Form className='mt-4'>
               <Form.Group className='mb-2'>
-                <Form.Label htmlFor='text'>Enter Your Comment Here</Form.Label>
+                <Form.Label htmlFor='text'><span className='comment-text'>Enter your Comment Here</span></Form.Label>
                 <Form.Control onChange={handleChange} type="text" name="text" placeholder="Comment text" />
-                <Form.Control className='bot-box' onClick={handleChange} type="number" min="0" max="100" name="media" placeholder={media.id} defaultValue={media.id}/>
               </Form.Group>
-
-              {/* <Form.Group className='mb-2 bot-box'>
-                <Form.Label htmlFor="media">Check you are not a Bot : Enter the Number Below</Form.Label>
-                <Form.Control onChange={handleChange} type="number" min="0" max="100" name="media" placeholder={media.id} defaultValue={media.id}/>
-              </Form.Group> */}
-
             </Form>
-            <div className="profile-buttons">
-              <Button onClick={handleSubmit} variant="primary" type="submit">Post Your Comment</Button>
+
+              <div className='click-add'>Click to add your comment</div>
+            <div className="comment-submit">
+              <Button onClick={handleSubmit} className='btn-comment' type="submit">
+                <Form.Control className='bot-box' onMouseEnter={handleChange} type="number" min="0" max="100" name="media" placeholder='Post your Comment' defaultValue={media.id}/></Button>
             </div>
+
+            {/* <div className='click-add'>Click to add your comment</div>
+            <div className="comment-submit">
+              <Button onClick={handleSubmit} variant="primary" type="submit">
+                <input className='bot-box' onMouseEnter={handleChange} type="number" min="0" max="100" name="media" placeholder='Post your Comment' defaultValue={media.id}/></Button>
+            </div> */}
+      
+      {userIsAuthenticated() ?
+        <div className="buttons mb-4">
+          <Button variant='danger' onClick={deleteMedia}>Delete Media</Button>
+        </div>
+        :
+        <div></div>
+      }
+            
+
+            
 
     </>
     // //This is the ternary point for video or images 
