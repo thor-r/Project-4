@@ -48,10 +48,14 @@ const GameDetail = () => {
 
   return (
     <>
-      <h1>{game.name}</h1>
+    <div className='gamedetailcontainer'>
+      
 
       <div className="gameProfile">
-        <Card className="info-card">
+        <Card className="game-info-card">
+          <div className='gameheadercontainer'>
+        <h1 className='game-header'>{game.name}</h1>
+        </div>
           <Card.Body>
             {/* <Card.Title>{game.name}</Card.Title> */}
             <div className="profile_image_container">
@@ -62,10 +66,14 @@ const GameDetail = () => {
           
         </Card>
       </div>
+      </div>
+      
+
 
       <div className="media-info">
         {game.medias ? (
           game.medias.map((media, id) => {
+            console.log(media.created_at)
             return (
               // media.video === true ?
               <>

@@ -177,17 +177,19 @@ const MediaDetail = () => {
                 </Col>
               </Row>
               <div className="media-information-details">
-                <Card.Title>{media.title}</Card.Title>
+                <div className="title-views-container">
+                  <Card.Title>{media.title}</Card.Title>
+                  <Card.Title className="views-container">
+                    Views {media.views}{' '}
+                  </Card.Title>
+                  <Card.Title>Uploaded at {media.created_at}</Card.Title>
+                </div>
                 <div className="video-information-container">
                   <div className="views-date-container">
-                    <Card.Title className="views-container">
+                    {/* <Card.Title className="views-container">
                       Views {media.views}{' '}
-                    </Card.Title>
+                    </Card.Title> */}
                     {/* <Card.Title>Uploaded at {media.created_at}</Card.Title> */}
-                    <Card.Title className="date-container">
-                      {' '}
-                      · {media.created_at}
-                    </Card.Title>
                   </div>
                   {/* <Card.Title>Description {media.description} </Card.Title> */}
                   <div className="video-icons-container">
