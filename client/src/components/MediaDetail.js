@@ -8,7 +8,11 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { getTokenFromLocalStorage, getPayload, userIsAuthenticated } from '../helpers/auth'
+import {
+  getTokenFromLocalStorage,
+  getPayload,
+  userIsAuthenticated,
+} from '../helpers/auth'
 import { RiUserFollowLine } from 'react-icons/ri'
 import { AiFillDislike, AiFillLike } from 'react-icons/ai'
 import { FaShareAlt } from 'react-icons/fa'
@@ -107,86 +111,118 @@ const MediaDetail = () => {
   return (
     // media.video === true ?
     <>
-      <Card className="media-owner-card">
+      {/* <Card className="media-owner-card">
         <Card.Header as="h5" className="media-owner-header">
           {mediaOwner.profile_name}
         </Card.Header>
         <Card.Body className="media-owner-card-body">
           <img src={mediaOwner.profile_image} alt={mediaOwner.name} />
           {/* <Card.Title></Card.Title> */}
-          <Card.Text>{mediaOwner.bio}</Card.Text>
+      {/* <Card.Text>{mediaOwner.bio}</Card.Text>
           <Button className="follow-btn">
             <RiUserFollowLine />
             Follow
           </Button>
         </Card.Body>
-      </Card>
+      </Card> */}
 
       {/* <p>{mediaOwner.profile_name}</p>
       <div className="owner_image_container">
         <img src={mediaOwner.profile_image} alt={mediaOwner.name} />
       </div>
       <p>{mediaOwner.bio}</p> */}
-
-      <div className="mediaProfile">
-        <Card className="info-card">
-          <Card.Body>
-            <div className="profile_image_container">
-              <video
-                className="single-video"
-                src={media.file_to_upload}
-                width="350"
-                height="250"
-                controls
-              ></video>
-            </div>
-            <div className="media-information-details">
-              <Card.Title>{media.title}</Card.Title>
-              <div className="video-information-container">
-                <div className="views-date-container">
-                  <Card.Title className="views-container">
-                    Views {media.views}{' '}
-                  </Card.Title>
-                  {/* <Card.Title>Uploaded at {media.created_at}</Card.Title> */}
-                  <Card.Title className="date-container">
-                    {' '}
-                    · {media.created_at}
-                  </Card.Title>
-                </div>
-                {/* <Card.Title>Description {media.description} </Card.Title> */}
-                <div className="video-icons-container">
-                  <Button className="video-icons">
-                    {' '}
-                    <AiFillLike />
-                    LIKE{' '}
-                  </Button>
-                  <Button className="video-icons">
-                    <AiFillDislike /> DISLIKE
-                  </Button>
-                  <Button className="video-icons">
-                    <FaShareAlt /> SHARE
-                  </Button>
-                  <Button className="video-icons">
-                    <MdDataSaverOn />
-                    SAVE
-                  </Button>
+      {/* <div>
+        <div className="media-profile-container">
+          <div className="banner-img"></div>
+          <img
+            className="player-profile-image"
+            src={mediaOwner.profile_image}
+            alt="user-img"
+          />
+          <h1>{mediaOwner.profile_name}</h1>
+          <p>{mediaOwner.bio}</p>
+          <button className="follow-me-btn">Follow me</button>
+        </div>
+      </div> */}
+      <Col>
+        <div className="mediaProfile">
+          <Card className="info-card">
+            <Card.Body>
+              <Row>
+                <Col>
+                  <div className="profile_image_container">
+                    <video
+                      className="single-video"
+                      src={media.file_to_upload}
+                      width="350"
+                      height="250"
+                      controls
+                    ></video>
+                  </div>
+                </Col>
+                <Col>
+                  <div className="media-profile-col">
+                    <div className="media-profile-container">
+                      <div className="banner-img"></div>
+                      <img
+                        className="player-profile-image"
+                        src={mediaOwner.profile_image}
+                        alt="user-img"
+                      />
+                      <h1>{mediaOwner.profile_name}</h1>
+                      <p>{mediaOwner.bio}</p>
+                      <button className="follow-me-btn">Follow me</button>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+              <div className="media-information-details">
+                <Card.Title>{media.title}</Card.Title>
+                <div className="video-information-container">
+                  <div className="views-date-container">
+                    <Card.Title className="views-container">
+                      Views {media.views}{' '}
+                    </Card.Title>
+                    {/* <Card.Title>Uploaded at {media.created_at}</Card.Title> */}
+                    <Card.Title className="date-container">
+                      {' '}
+                      · {media.created_at}
+                    </Card.Title>
+                  </div>
+                  {/* <Card.Title>Description {media.description} </Card.Title> */}
+                  <div className="video-icons-container">
+                    <Button className="video-icons">
+                      {' '}
+                      <AiFillLike />
+                      LIKE{' '}
+                    </Button>
+                    <Button className="video-icons">
+                      <AiFillDislike /> DISLIKE
+                    </Button>
+                    <Button className="video-icons">
+                      <FaShareAlt /> SHARE
+                    </Button>
+                    <Button className="video-icons">
+                      <MdDataSaverOn />
+                      SAVE
+                    </Button>
+                  </div>
                 </div>
               </div>
+            </Card.Body>
+          </Card>
+
+          {/* {userIsAuthenticated() ? (
+            <div className="buttons mb-4">
+              <Button variant="danger" onClick={deleteMedia}>
+                Delete Media
+              </Button>
             </div>
-          </Card.Body>
-        </Card>
-
-        {userIsAuthenticated() ? (
-          <div className="buttons mb-4">
-            <Button variant="danger" onClick={deleteMedia}>
-              Delete Media
-            </Button>
-          </div>
-        ) : (
-          <div></div>
-        )}
-      </div>
-
+          ) : (
+            <div></div>
+          )} */}
+        </div>
+      </Col>
       <div className="media-detail-info">
         {media.comments ? (
           media.comments.map((comment, id) => {
@@ -299,6 +335,17 @@ const MediaDetail = () => {
                   defaultValue={media.id}
                 />
               </Button>
+            </div>
+            <div className="delete-media-btn">
+              {userIsAuthenticated() ? (
+                <div className="buttons mb-4">
+                  <Button variant="danger" onClick={deleteMedia}>
+                    Delete Media
+                  </Button>
+                </div>
+              ) : (
+                <div></div>
+              )}
             </div>
           </>
         ) : (

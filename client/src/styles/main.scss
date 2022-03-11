@@ -3,11 +3,10 @@
 @import './components//footer';
 @import './components/register';
 @import './components/login';
-@import './components/gamelist';
+// @import './components/gamelist';
 @import './components/gamedetail';
 @import './components/mediadetail';
 @import './components/mediaupload';
-
 
 * {
   box-sizing: border-box;
@@ -36,6 +35,14 @@
     }
     .form-text {
       color: red;
+    }
+    .form-label {
+      margin-bottom: 0px;
+    }
+    .form-bottom {
+      input {
+        margin-bottom: 10px;
+      }
     }
   }
 }

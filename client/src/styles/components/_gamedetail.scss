@@ -43,12 +43,30 @@
 }
 
 .profile_image_container {
+  display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: space-around;
+    align-items: center;
   img {
     max-width: 256px;
+    max-height: 350px;
+    border-radius: 5px;
+  }
+  .consoleimage{
+    max-width: 620px;
+    max-height: 450px;
+    border-radius: 10px; 
+  }
+}
+
+.gamepic_image_container{
+  img {
+    // max-width: 256px;
     max-height: 350px;
     border-radius: 4px;
   }
 }
-
 
 

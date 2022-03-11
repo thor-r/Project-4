@@ -11,6 +11,8 @@ import Button from 'react-bootstrap/Button'
 import Carousel from 'react-bootstrap/Carousel'
 import Stack from 'react-bootstrap/Stack'
 import Image from 'react-bootstrap/Image'
+import GetReadyImg from '../images/GetReady1.png'
+import LogBestImg from '../images/LogYourBest.gif'
 // import FormControl from 'react-bootstrap/FormControl'
 
 const Home = () => {
@@ -99,10 +101,10 @@ const Home = () => {
       <Container fluid id="home-container">
         <Row>
           <div className="home-content-1">
-            <h2 className='ready'><span>Ready To Log Ready To</span></h2>
-            <h4>
-            LOG YOUR BEST GAMING MOMENTS ▶︎ WATCH THE CLIPS THAT YOU LOVE ▶︎ CONNECT WITH STREAMERS ▶︎ CREATE MEMORIES AND BECOME LEGENDARY ▶︎ TAKE YOUR GAMING TO THE NEXT LEVEL. 
-            </h4>
+          <div>
+          <img src={GetReadyImg} className="getreadyimage" alt="getreadylog"></img>
+          </div>
+          <img src={LogBestImg} className="logbestimage" alt="logbest"></img>
           </div>
           <div className="home-buttons-1">
             <Link to={`/upload`}>
@@ -150,37 +152,39 @@ const Home = () => {
 
         <Row className="games-show-row">
 
-          {/* {topFiveMedias.map((media, i) => {
-            if (media.views =)
-          })} */}
-         
+        <span id="most-viewed">MOST VIEWED LOGS</span>
+
+        {topFiveMedias()}
+      {five.map((media, i) => {
+        if (i <= 4) {
+          return (
+            
+            <Card className="games-show-card">
+            
+                <Link to={`/mediadetail/${media.id}`}>
+              <video className="video-container" src={media.file_to_upload} width="315" height="250" controls></video>
+            </Link>
+            <div><span className='home-views'>Views: {media.views}</span> <span className='home-owner'>{media.owner.profile_name}</span></div>
+          
+            
+            
+
+          
+                
+              
+            
+              
+            
+            </Card>
+          )
+        } else {
+          console.log("no medias")
+        }
+      })}
+        
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
           {updatedGames &&

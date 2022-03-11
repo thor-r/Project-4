@@ -1,3 +1,21 @@
-.upload-form {
-  margin: 0 auto;
+.video-screenshot-upload {
+  display: flex;
+  margin: 10px 0px 10px 0px;
+  .field {
+    .checkbox {
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      input {
+        margin-left: 5px;
+      }
+    }
+  }
+}
+.form-bottom {
+  display: flex;
+  flex-direction: column;
+  input {
+    margin-bottom: 10px;
+  }
 }

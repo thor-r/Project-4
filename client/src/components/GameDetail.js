@@ -8,6 +8,8 @@ import { useParams, Link } from 'react-router-dom'
 // import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 
+import ConsoleLogImg from '../images/ConsoleLog1.gif'
+
 const GameDetail = () => {
   
   const { gameId } = useParams()
@@ -46,16 +48,18 @@ const GameDetail = () => {
 
   return (
     <>
-      <h1>This is the {game.name} page</h1>
+      <h1>{game.name}</h1>
 
       <div className="gameProfile">
         <Card className="info-card">
           <Card.Body>
-            <Card.Title>{game.name}</Card.Title>
+            {/* <Card.Title>{game.name}</Card.Title> */}
             <div className="profile_image_container">
-              <img src={game.image} alt={game.name} />
+              <img className ="fluid" src={game.image} alt={game.name} />
+              <img src={ConsoleLogImg} className="consoleimage" alt="animated consolelog"></img>
             </div>
           </Card.Body>
+          
         </Card>
       </div>
 
@@ -83,10 +87,10 @@ const GameDetail = () => {
                       <span className="views-container">
                         {media.views} Views
                       </span>{' '}
-                      <span className="uploadedby-container">
+                      
                         {' '}
-                        Uploaded by {media.owner.profile_name}
-                      </span>{' '}
+                        Uploaded by <span className="uploadedby-container">{media.owner.profile_name}</span>
+                      {' '}
                       <span className="createdat-container">
                         {' '}
                         Uploaded at {media.created_at}
