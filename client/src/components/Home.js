@@ -74,27 +74,6 @@ const Home = () => {
     }
   }
   console.log('SORTED MEDIA ---------->',five.sort)
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   return (
     <>
