@@ -29,16 +29,16 @@ const Footer = () => {
                         <Nav.Link href="/"> SUPPORT</Nav.Link>
                     </Col>
                     <Col xs lg="2">
-                        <h5>More</h5>
-                        <Link to={`/`} id="game_card_link"><h6>Forums</h6></Link>
-                        <Link to={`/`} id="game_card_link"><h6>Blog</h6></Link>
-                        <Link to={`/`} id="game_card_link"><h6>About Us</h6></Link>
+                        <h5>LinkedIn</h5>
+                        <a href={'https://www.linkedin.com/in/alibeniaminali/'} id="game_card_link" target="_blank"><h6>Ali Ali</h6></a>
+                        <a href={'https://www.linkedin.com/in/peter-bid/'} id="game_card_link" target="_blank"><h6>Peter Bid</h6></a>
+                        <a href={'www.linkedin.com/in/thor-refoy'} id="game_card_link" target="_blank"><h6>Thor Refoy</h6></a>
                     </Col>
                     <Col xs lg="2">
-                        <h5>About</h5>
-                        <Link to={`/`} id="game_card_link"><h6>Careers</h6></Link>
-                        <Link to={`/`} id="game_card_link"><h6>GitHub</h6></Link>
-                        <Link to={`/`} id="game_card_link"><h6>Creators</h6></Link>
+                        <h5>GitHub</h5>
+                        <a href={'https://github.com/alibeniaminali'} id="game_card_link" target="_blank"><h6>Ali Ali</h6></a>
+                        <a href={'https://github.com/PeterBid?tab=repositories'} id="game_card_link" target="_blank"><h6>Peter Bid</h6></a>
+                        <a href={'https://github.com/thor-r'} id="game_card_link" target="_blank"><h6>Thor Refoy</h6></a>
                     </Col>
                 </Row>
                 <Row id="socials">
