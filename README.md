@@ -1,4 +1,4 @@
-## General Assembly Project 4 - Console Logs
+# General Assembly Project 4 - Console Logs
 
 ### Table of Contents 
 
@@ -7,17 +7,17 @@
 - [Brief](#brief)
 - [Technologies Used](#technologies-used)
 - [Development Process](#development-process)
-- [Planning & Wireframing](#planning-&-wireframing)
+- [Planning & Wireframing](#planning-and-wireframing)
 - [Back-end](#back-end)
 - [Apps](#apps)
 - [Models](#models)
 - [Serializers](#serializers)
 - [Views](#views)
-- [URL's](#url's)
+- [URLs](#urls)
 - [Authentication](#authentication)
 - [Media View Counter](#media-view-counter)
 - [Front-end](#front-end)
-- [Authentication (Front-end)](#authetication-on-the-front-end)
+- [Authentication (Front-end)](#authentication-on-the-front-end)
 - [Game Detail](#game-detail)
 - [Media Upload](#media-upload)
 - [Home Page](#home-page)
@@ -27,10 +27,17 @@
 - [Key Learnings](#key-learnings)
 - [Future Improvements](#future-improvements)
 
-## Console Logs
+# Console Logs
 Console Logs is a social media site where users can upload, browse and comment on their favorite video game clips. Gaming has been a central passion of mine as long as I can remember, and throughout this time sites like Twitch.tv and Youtube have been influential in inspiring others to join in on this passion - so we wanted to emulate them.
 
 A full-stack app, Console Logs was built with Django REST Framework and React by a team of three: Thor Refoy, Peter Bid and Ali Ali. 
+
+![homepage](https://user-images.githubusercontent.com/87788714/161673511-1cc87f93-f88b-45b3-889e-83475df7c8ff.gif)
+
+![gamedetail](https://user-images.githubusercontent.com/87788714/161673522-d3fcb64f-56c0-436b-9ee3-13b2426f2823.gif)
+
+![mediadetail](https://user-images.githubusercontent.com/87788714/161673699-5515b241-ea8d-4c5c-a1ac-5d9e8ca0d6a5.gif)
+
 
 ### Code Installation 
 
@@ -103,7 +110,7 @@ Design and build a full-stack CRUD (Create, Read, Update, Delete) application us
 
 ## Development Process
 
-### Planning & Wireframing
+### Planning and Wireframing
 
 This was my final project at General Assembly and I wanted to make sure it would be both challenging and representative of my interests. After talking with Pete and Ali we realized we had a similar vision for project 4 so decided to team up.  
 
@@ -152,7 +159,7 @@ A **views.py** file where we define functions that make various CRUD requests to
 
 ![Screen Shot 2022-03-31 at 8 01 24 PM](https://user-images.githubusercontent.com/87788714/161671086-d353efc3-2543-42b5-a99c-dabeec50b2ab.png)
 
-### URL's
+### URLs
 
 Then a **urls.py** where we define the endpoints for each view. 
 
