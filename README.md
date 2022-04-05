@@ -109,10 +109,16 @@ This was my final project at General Assembly and I wanted to make sure it would
 
 To aid in time and error handling we planned to code the backend together via VScode’s live sharing feature. Then we used FigJam to wireframe the apps we needed, their structure and relationships. 
 
+<img width="1576" alt="Screen Shot 2022-03-31 at 3 02 23 AM" src="https://user-images.githubusercontent.com/87788714/161670899-b4530bc4-39eb-4e7a-81f4-00f6e13836af.png">
+
+
 We decided to make genres its own app, although this was not necessary and we could have included it as a field on the game model we wanted to add complexity to our backend by having a many-to-many relationship. 
 
 ## Back-end 
+
 We first created our file structure with a **project.py** folder at the root. We used **psycopg2** as our engine. 
+
+![Screen Shot 2022-03-31 at 6 20 15 PM](https://user-images.githubusercontent.com/87788714/161670976-da3ffcb0-d937-4b4f-931c-63762ac99bd0.png)
 
 ### Apps
 
@@ -130,34 +136,53 @@ Each app consists of 4 key files:
 
 The **models.py** file is where a model is defined with its required/non-required fields. The foreign keys are a reference used to create relationships between models in different apps. Both the medias model and the comments model used two foreign keys. 
 
+![Screen Shot 2022-03-31 at 7 59 35 PM](https://user-images.githubusercontent.com/87788714/161671043-32b996b1-1356-439a-8721-91d4c9e26623.png)
+
 
 ### Serializers
 
-**Serializers.py** where we specify what seeded data objects are to be read by JavaScript on the front-end. In the medias app we used both a common serializer and a populated serializer to allow us to specify exactly what fields we wanted to render into JSON depending on the request. 
+**Serializers.py** where we specify what seeded data objects are to be read by JavaScript on the front-end. In the medias app we used both a common serializer and a populated serializer to allow us to specify exactly what fields we wanted to render into JSON depending on the request.
+
+![Screen Shot 2022-03-31 at 7 59 56 PM](https://user-images.githubusercontent.com/87788714/161671058-e88c6ae6-7b14-4315-8f1e-138dd39df0a4.png)
+![Screen Shot 2022-03-31 at 8 00 06 PM](https://user-images.githubusercontent.com/87788714/161671069-1d154a06-e5da-4462-8914-5fed81d7d7fe.png)
 
 ### Views
 
 A **views.py** file where we define functions that make various CRUD requests to our database. This is where we use the serializers, converting the data returned. 
 
+![Screen Shot 2022-03-31 at 8 01 24 PM](https://user-images.githubusercontent.com/87788714/161671086-d353efc3-2543-42b5-a99c-dabeec50b2ab.png)
+
 ### URL's
 
 Then a **urls.py** where we define the endpoints for each view. 
+
+![Screen Shot 2022-03-31 at 8 00 38 PM](https://user-images.githubusercontent.com/87788714/161671106-33ecba19-f5f3-4f61-856d-d5af6d3d3e77.png)
 
 ### Authentication 
 
 To add authentication we added a **authentication.py** file inside the jwt_auth app. Here we defined a function that extended **Django REST framework’s** ‘BasicAuthentication’ . This function takes the token from the authorization header then using **jsonwebtoken** decodes it using the **HS256** algorithm, then, finally finds the user by extracting the sub from the token. 
 
+![Screen Shot 2022-04-01 at 12 42 35 AM](https://user-images.githubusercontent.com/87788714/161671145-aedaf2fd-3092-46ca-884c-4d0a8e377304.png)
+
 With this function we were able to add authorization to any route that passes through a view in the views.py file.
 
 The User serializer was slightly different to the other apps, it needed a method inside for validating the User. This involved checking the password and password confirmation match - we used Django’s **password_validation**. Then hashing the password and reattaching it to the request body. 
+
+![Screen Shot 2022-04-01 at 12 55 30 AM](https://user-images.githubusercontent.com/87788714/161671171-c45d2730-98ed-4daf-b12f-37cabcfb97ff.png)
 
 ### Media View Counter
 
 A crucial part of the project is being able to see how many ‘views’ each video clip has. I did this by returning to the medias model and giving it a ‘views’ - an ‘IntegerField’ that starts at 0. 
 
+![Screen Shot 2022-04-01 at 1 05 18 AM](https://user-images.githubusercontent.com/87788714/161671200-c069f2d2-ec9e-499a-ae66-913b0f610034.png)
+
 Next, to make it functional I made an adjustment to the individual media GET request. I declared a variable equal to the media object with its unique id. I then used dot notation to increment the value of the media views by +1 each time a GET request was sent to that individual media. 
 
+![Screen Shot 2022-04-01 at 1 13 00 AM](https://user-images.githubusercontent.com/87788714/161671227-32f05b9c-ccbd-4105-aed9-6258f9758b7d.png)
+
 The last step in the back-end was to seed our database, we did this via Django’s admin site.
+
+![Screen Shot 2022-04-01 at 3 09 46 AM](https://user-images.githubusercontent.com/87788714/161671249-ab0d2b44-08e2-426d-9594-393e48a71f93.png)
 
 ## Front-end
 
@@ -178,34 +203,63 @@ First I created an auth.js file that uses local storage to get the login token. 
 
 I also had to install and import the **Buffer**, I found that without this the user could login but wouldn’t stay logged-in as they navigated the site. 
 
+![Screen Shot 2022-04-01 at 2 46 01 AM](https://user-images.githubusercontent.com/87788714/161671278-91d3992b-3d36-496d-bae1-4d061b6d61a8.png)
+
 I then moved onto the Register and Login components. I created their forms using React Bootstrap - this saved time on styling. In both forms I defined a **useState** object to handle the form values and used handleChange functions that set the form data based on the event target value. 
 
+![Screen Shot 2022-04-01 at 2 59 38 AM](https://user-images.githubusercontent.com/87788714/161671301-f2489951-f41e-40ad-a5fe-e53b1e8adc0a.png)
+![Screen Shot 2022-04-01 at 3 04 52 AM](https://user-images.githubusercontent.com/87788714/161671315-db1f1158-2ad7-4c35-9f28-fe2170c1a4aa.png)
+
 To submit the forms I used async functions that make POST requests to our database passing in the relevant endpoint and the form data. In the login component the token had to be set to local storage at this point. 
+
+![Screen Shot 2022-04-01 at 3 07 59 AM](https://user-images.githubusercontent.com/87788714/161671333-d79f63d2-d419-493a-8d60-a8ac196413fd.png)
 
 ### Game Detail 
 
 This page uses two **useEffect** functions that make async, axios GET requests to our database. One to return the individual game, this is done by calling **useParams** to return an object from the endpoint of the request, then populating a piece of state with the data returned. The second **useEffect** makes a GET request to the medias endpoint and populates a piece of state with the data returned. 
 
+![Screen Shot 2022-04-01 at 4 02 57 PM](https://user-images.githubusercontent.com/87788714/161671355-cba7fb38-0ccf-4c5c-8a64-43924c78efab.png)
+
 We then use the combined data in the return to map through and display both the Game itself and its related media. 
 
-I had to use a <video> tag to display the clips, inside the tag I added a default size for every clip and gave them basic controls. 
+![Screen Shot 2022-04-01 at 4 08 53 PM](https://user-images.githubusercontent.com/87788714/161671375-a162b2e6-29cf-477f-b2ca-0c684e724c1f.png)
+
+I had to use a video tag to display the clips, inside the tag I added a default size for every clip and gave them basic controls. 
+    
+![Screen Shot 2022-04-01 at 4 11 49 PM](https://user-images.githubusercontent.com/87788714/161671585-669ef4c3-ebee-49ef-b5a7-c74527471488.png)
+
+<img width="1567" alt="Screen Shot 2022-04-01 at 4 19 23 PM" src="https://user-images.githubusercontent.com/87788714/161671600-4287e90f-c38c-4a6e-a4be-72a2d88b1622.png">
 
 ### Media Upload 
 
 
-To enable users to upload their own clips we used cloudinary as a third party host. The first step in setting this up was to create a new component called **ImageUploadField**. Inside here I wrote an async function that takes the target file and the unique upload preset from cloudinary and makes a POST request to our API environment variable and sets a URL for the newly hosted media. Then in the return I placed a <video> tag to make sure the clip displays and called the upload function I defined above. 
+To enable users to upload their own clips we used cloudinary as a third party host. The first step in setting this up was to create a new component called **ImageUploadField**. Inside here I wrote an async function that takes the target file and the unique upload preset from cloudinary and makes a POST request to our API environment variable and sets a URL for the newly hosted media. Then in the return I placed a video tag to make sure the clip displays and called the upload function I defined above. 
+    
+![Screen Shot 2022-04-01 at 5 09 30 PM](https://user-images.githubusercontent.com/87788714/161671754-8eea5efc-e7f5-41fe-a023-8c823bedb41b.png)
 
+![Screen Shot 2022-04-01 at 5 09 39 PM](https://user-images.githubusercontent.com/87788714/161671774-6bc5197a-3612-4b3b-9887-e10ad8fe1626.png)
+
+    
 I also had to create a companion component for the upload form. Here is where I defined the function that spreads in the form data and sets the URL which I passed in as a prop and used in the component above. 
+
+![Screen Shot 2022-04-01 at 5 15 39 PM](https://user-images.githubusercontent.com/87788714/161671901-3c1f5fe1-19ef-43bd-9846-0207a98075f8.png)
 
 To make the form I used a state object to set the form data and passed in the ImageUploadField as a prop. 
 
+![Screen Shot 2022-04-01 at 5 17 13 PM](https://user-images.githubusercontent.com/87788714/161671923-ab4c69d4-b9a2-4b86-8773-6738301e8ec1.png)
+
 To finish the upload I wrote the function that is called when the submit button is clicked. This function makes a POST requests to our medias table passing in the authorization token and the data from the form. 
+
+![Screen Shot 2022-04-01 at 5 19 34 PM](https://user-images.githubusercontent.com/87788714/161671940-66da404b-60c8-401f-ac95-2b3aba5a8c23.png)
 
 ### Home Page 
 
 To display the top 5 medias on the homepage I made another axios GET request to our database to return all the medias stored. I tried to write a function that sorted the media based on their views in ascending order but I couldn’t get it to work. By this point it was the last full day working on the project so I settled on just returning any 5 medias to the homepage - I will add the proper functionality in a V2 of the site.  
 
 I finished off this task by using Flexbox to style the video clips. 
+
+![Screen Shot 2022-04-01 at 4 30 59 PM](https://user-images.githubusercontent.com/87788714/161671959-d2e224a4-d480-425a-b785-e157e4ffd6fe.png)
+<img width="1687" alt="Screen Shot 2022-04-01 at 4 32 13 PM" src="https://user-images.githubusercontent.com/87788714/161671972-27d44887-b2e3-476e-983d-a50eac4e9110.png">
 
 ## Challenges 
 This was both our first time using Django and Django in a group. This added a layer of complexity when merging our branches via Git. We found ourselves spending a great deal of time having to delete/makemigrations and re-seed the database. However the benefit of this was that by the end of the project we all had a much more thorough understanding of Django’s best practices and quirks. 
