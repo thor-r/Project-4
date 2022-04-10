@@ -43,7 +43,7 @@ const MediaDetail = () => {
   useEffect(() => {
     const getMedia = async () => {
       try {
-        const { data } = await axios.get(`/api/media/${mediaId}`)
+        const { data } = await axios.get(`/api/media/${mediaId}/`)
         setMedia(data)
         setMediaOwner(data.owner)
       } catch (err) {
@@ -58,7 +58,7 @@ const MediaDetail = () => {
 
   const deleteMedia = async () => {
     try {
-      await axios.delete(`/api/media/${mediaId}`, {
+      await axios.delete(`/api/media/${mediaId}/`, {
         headers: {
           Authorization: `Bearer ${getTokenFromLocalStorage()}`,
         },
@@ -91,7 +91,7 @@ const MediaDetail = () => {
 
   const deleteComment = async () => {
     try {
-      await axios.delete(`/api/commments/${id}`, {
+      await axios.delete(`/api/commments/${id}/`, {
         headers: {
           Authorization: `Bearer ${getTokenFromLocalStorage()}`,
         },

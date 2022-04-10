@@ -9,7 +9,7 @@ export const ImageUploadField = ({ handleImageUrl, setFormData, value }) => {
     const data = new FormData()
     data.append('file', event.target.files[0])
     data.append('upload_preset', 'du2ggxil')
-    const res = await axios.post('https://api.cloudinary.com/v1_1/sei61cloud/video/upload', data)
+    const res = await axios.post('https://api.cloudinary.com/v1_1/sei61cloud/video/upload/', data)
     handleImageUrl(res.data.url)
   }
 

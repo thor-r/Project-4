@@ -28,7 +28,7 @@ const Home = () => {
   useEffect(() => {
     const getGames = async () => {
       try {
-        const { data } = await axios.get('/api/games')
+        const { data } = await axios.get('/api/games/')
         setGames(data)
         setUpdatedGames(data)
       } catch (err) {

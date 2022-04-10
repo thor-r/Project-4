@@ -22,7 +22,7 @@ const GameDetail = () => {
   useEffect(() => {
     const getGame = async () => {
       try {
-        const { data } = await axios.get(`/api/games/${gameId}`)
+        const { data } = await axios.get(`/api/games/${gameId}/`)
         setGame(data)
       } catch (err) {
         setHasError({ error: true, message: err.message })
