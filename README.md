@@ -2,6 +2,7 @@
 
 ### Table of Contents 
 
+- [Deployed Version](#deployed-version)
 - [Code Installation](#code-installation)
 - [Build-time](#build-time)
 - [Brief](#brief)
@@ -37,6 +38,9 @@ A full-stack app, Console Logs was built with Django REST Framework and React by
 ![gamedetail](https://user-images.githubusercontent.com/87788714/161673522-d3fcb64f-56c0-436b-9ee3-13b2426f2823.gif)
 
 ![mediadetail](https://user-images.githubusercontent.com/87788714/161673699-5515b241-ea8d-4c5c-a1ac-5d9e8ca0d6a5.gif)
+
+###  Deployed Version 
+[Console Logs](https://console-logs.herokuapp.com/)
 
 
 ### Code Installation 
