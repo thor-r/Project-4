@@ -57,7 +57,6 @@ const GameDetail = () => {
         <h1 className='game-header'>{game.name}</h1>
         </div>
           <Card.Body>
-            {/* <Card.Title>{game.name}</Card.Title> */}
             <div className="profile_image_container">
               <img className ="fluid" src={game.image} alt={game.name} />
               <img src={ConsoleLogImg} className="consoleimage" alt="animated consolelog"></img>
